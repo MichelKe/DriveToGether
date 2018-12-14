@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Anmelden" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="DriveToGether.Account.Login" Async="true" %>
-
+<%--
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
@@ -61,5 +61,6 @@
                 <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
             </section>
         </div>
-    </div>
+    </div>   
 </asp:Content>
+--%>

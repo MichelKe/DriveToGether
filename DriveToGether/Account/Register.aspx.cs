@@ -11,6 +11,7 @@ namespace DriveToGether.Account
 {
     public partial class Register : Page
     {
+        /*
         protected void CreateUser_Click(object sender, EventArgs e)
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -32,5 +33,6 @@ namespace DriveToGether.Account
                 ErrorMessage.Text = result.Errors.FirstOrDefault();
             }
         }
+        */
     }
 }
