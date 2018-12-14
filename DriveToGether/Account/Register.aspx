@@ -1,5 +1,5 @@
-﻿<%@ Page Title="Registrieren" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="DriveToGether.Account.Register" %>
-<%-- 
+﻿<%@ Page Title="Registrieren" Language="C#" MasterPageFile="~/LoginSite.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="DriveToGether.Account.Register" %>
+
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <h2><%: Title %>.</h2>
     <p class="text-danger">
@@ -43,4 +43,3 @@
         </div>
     </div>
 </asp:Content>
---%>

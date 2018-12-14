@@ -66,11 +66,11 @@
     </div>
 
 
-     <%--Register --%>
+     <%--Register
     <p class="text-danger">
         <asp:Literal runat="server" ID="Literal1" />
     </p>
- <%--<div class="row">--%>
+<div class="row">
   <div class="col-6">
     <div class="form-horizontal">
         <h4>Neues Konto erstellen</h4>
@@ -81,7 +81,7 @@
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="TextBox1" CssClass="form-control" TextMode="Email" />
                 <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                     CssClass="text-danger" ErrorMessage="Das E-Mail-Feld ist erforderlich." />--%>
+                     CssClass="text-danger" ErrorMessage="Das E-Mail-Feld ist erforderlich." />-
             </div>
         </div>
         <div class="form-group">
@@ -89,17 +89,17 @@
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="TextBox2" TextMode="Password" CssClass="form-control" />
                    <%-- <asp:RequiredFieldValidator runat="server" ControlToValidate="Password"
-                    CssClass="text-danger" ErrorMessage="Das Kennwortfeld ist erforderlich." />--%>
+                    CssClass="text-danger" ErrorMessage="Das Kennwortfeld ist erforderlich." />
             </div>
         </div>
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="ConfirmPassword" CssClass="col-md-2 control-label">Kennwort bestätigen</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="ConfirmPassword" TextMode="Password" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="ConfirmPassword"
+                <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="ConfirmPassword"
                     CssClass="text-danger" Display="Dynamic" ErrorMessage="Das Feld zum Bestätigen des Kennworts ist erforderlich." />
-                <%--<asp:CompareValidator runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword"
-                    CssClass="text-danger" Display="Dynamic" ErrorMessage="Das Kennwort stimmt nicht mit dem Bestätigungskennwort überein." />--%>
+                asp:CompareValidator runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword"
+                    CssClass="text-danger" Display="Dynamic" ErrorMessage="Das Kennwort stimmt nicht mit dem Bestätigungskennwort überein." />
             </div>
         </div>
         <div class="form-group">
@@ -108,6 +108,6 @@
             </div>
         </div>
     </div>
-              </div>
-    </div>
+  </div>
+</div>--%>
 </asp:Content>

@@ -1,12 +1,16 @@
-﻿<%@ Page Title="Anmelden" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="DriveToGether.Account.Login" Async="true" %>
-<%--
+﻿<%@ Page Title="Anmelden" Language="C#" MasterPageFile="~/LoginSite.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="DriveToGether.Account.Login" Async="true" %>
+
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2><%: Title %>.</h2>
-
-    <div class="row">
-        <div class="col-md-8">
+    <br>
+    <br>
+    <br>
+   <div class="row">
+    <div class="col-md-4">      
+     </div>
+      <div class="col-md-8">
+          <h2><%: Title %></h2>
             <section id="loginForm">
                 <div class="form-horizontal">
                     <h4>Lokales Konto für die Anmeldung verwenden.</h4>
@@ -48,19 +52,23 @@
                 <p>
                     <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Als neuer Benutzer registrieren</asp:HyperLink>
                 </p>
-                <p>
-                    <%-- Enable this once you have account confirmation enabled for password reset functionality
+                 <%--
+                 <p>
+                    Enable this once you have account confirmation enabled for password reset functionality
                     <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
-                    --%>
+                    
                 </p>
+                --%>
             </section>
         </div>
 
+        <%--
         <div class="col-md-4">
             <section id="socialLoginForm">
                 <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
             </section>
         </div>
+        --%>
     </div>   
 </asp:Content>
---%>
+
