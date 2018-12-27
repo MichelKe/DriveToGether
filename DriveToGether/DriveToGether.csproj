@@ -180,6 +180,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EventDetails.aspx" />
     <Content Include="About.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
@@ -188,6 +189,8 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Manage.aspx" />
     <Content Include="Account\ManageLogins.aspx" />
+    <Content Include="Account\ManageNachname.aspx" />
+    <Content Include="Account\ManageVorname.aspx" />
     <Content Include="Account\ManagePassword.aspx" />
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
@@ -246,12 +249,20 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Views\Car\AddCar.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
     <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventDetails.aspx.cs">
+      <DependentUpon>EventDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EventDetails.aspx.designer.cs">
+      <DependentUpon>EventDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
       <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -300,6 +311,20 @@
     </Compile>
     <Compile Include="Account\ManageLogins.aspx.designer.cs">
       <DependentUpon>ManageLogins.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ManageNachname.aspx.cs">
+      <DependentUpon>ManageNachname.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ManageNachname.aspx.designer.cs">
+      <DependentUpon>ManageNachname.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ManageVorname.aspx.cs">
+      <DependentUpon>ManageVorname.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ManageVorname.aspx.designer.cs">
+      <DependentUpon>ManageVorname.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ManagePassword.aspx.cs">
       <DependentUpon>ManagePassword.aspx</DependentUpon>
@@ -375,6 +400,8 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\CarController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -385,11 +412,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812181457598_CreateEventsTable.cs" />
-    <Compile Include="Migrations\201812181457598_CreateEventsTable.Designer.cs">
-      <DependentUpon>201812181457598_CreateEventsTable.cs</DependentUpon>
+    <Compile Include="Migrations\201812180749474_InitialCreate.cs" />
+    <Compile Include="Migrations\201812180749474_InitialCreate.Designer.cs">
+      <DependentUpon>201812180749474_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812271235223_Name.cs" />
+    <Compile Include="Migrations\201812271235223_Name.Designer.cs">
+      <DependentUpon>201812271235223_Name.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DB.cs" />
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\CarModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -416,10 +448,17 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Car\AddCar.aspx.cs">
+      <DependentUpon>AddCar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Car\AddCar.aspx.designer.cs">
+      <DependentUpon>AddCar.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="Views\Event\" />
     <Folder Include="Views\PorcoDio\" />
   </ItemGroup>
   <ItemGroup>
@@ -434,8 +473,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812181457598_CreateEventsTable.resx">
-      <DependentUpon>201812181457598_CreateEventsTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812180749474_InitialCreate.resx">
+      <DependentUpon>201812180749474_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812271235223_Name.resx">
+      <DependentUpon>201812271235223_Name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

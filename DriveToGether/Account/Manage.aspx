@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Konto verwalten" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="DriveToGether.Account.Manage" %>
+﻿<%@ Page Title="Dein Profil" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="DriveToGether.Account.Manage" %>
 
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
@@ -10,17 +10,44 @@
             <p class="text-success"><%: SuccessMessage %></p>
         </asp:PlaceHolder>
     </div>
-
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
+             <div class="form-horizontal">
+                <h4>Deine Daten</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>Vorname:</dt>
+                    <dd>
+                        
+                        <span>x.x VORNAME x.x</span>
+                    </dd>
+                    <dt>Nachname:</dt>
+                    <dd>
+                       
+                        <span>x.x NACHNAME x.x</span>
+                    </dd>
+                    <dt>Email:</dt>
+                    <dd>
+                        <span><%: Context.User.Identity.GetUserName()  %></span>
+                    </dd>
+            </div>
+        </div>
+        <div class="col-md-6">
             <div class="form-horizontal">
                 <h4>Kontoeinstellungen ändern</h4>
                 <hr />
                 <dl class="dl-horizontal">
+                    <dt>Vorname:</dt>
+                    <dd>
+                        <asp:HyperLink NavigateUrl="/Account/ManageVorname" Text="[Ändern]" Visible="false" ID="ChangeVorname" runat="server" />
+                    </dd>
+                    <dt>Nachname:</dt>
+                    <dd>
+                        <asp:HyperLink NavigateUrl="/Account/ManageNachname" Text="[Ändern]" Visible="false" ID="ChangeNachname" runat="server" />
+                    </dd>
                     <dt>Kennwort:</dt>
                     <dd>
-                        <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Change]" Visible="false" ID="ChangePassword" runat="server" />
-                        <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Create]" Visible="false" ID="CreatePassword" runat="server" />
+                        <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Ändern]" Visible="false" ID="ChangePassword" runat="server" />
                     </dd>
                     <dt>Externe Anmeldungen:</dt>
                     <dd><%: LoginsCount %>

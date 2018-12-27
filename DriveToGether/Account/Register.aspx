@@ -11,6 +11,22 @@
         <hr />
         <asp:ValidationSummary runat="server" CssClass="text-danger" />
         <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="Vorname" CssClass="col-md-2 control-label">Vorname</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="Vorname" CssClass="form-control"/>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Vorname"
+                    CssClass="text-danger" ErrorMessage="Das Vorname-Feld ist erforderlich." />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="Nachname" CssClass="col-md-2 control-label">Nachname</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="Nachname" CssClass="form-control"/>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Nachname"
+                    CssClass="text-danger" ErrorMessage="Das Nachname-Feld ist erforderlich." />
+            </div>
+        </div>
+        <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">E-Mail</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />

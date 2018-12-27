@@ -10,42 +10,33 @@
 namespace DriveToGether.Account {
     
     
-    public partial class Manage {
+    public partial class ManagePassword {
         
         /// <summary>
-        /// successMessage-Steuerelement
+        /// changeNachnameHolder-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder successMessage;
+        protected global::System.Web.UI.WebControls.PlaceHolder changeNachnameHolder;
         
         /// <summary>
-        /// ChangeVorname-Steuerelement
+        /// NewNachnameLabel-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink ChangeVorname;
+        protected global::System.Web.UI.WebControls.Label NewNachnameLabel;
         
         /// <summary>
-        /// ChangeNachname-Steuerelement
+        /// NewNachname-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink ChangeNachname;
-        
-        /// <summary>
-        /// ChangePassword-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink ChangePassword;
+        protected global::System.Web.UI.WebControls.TextBox NewNachname;
     }
 }

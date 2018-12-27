@@ -7,13 +7,13 @@ namespace DriveToGether.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class CreateEventsTable : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateEventsTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201812181457598_CreateEventsTable"; }
+            get { return "201812180749474_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

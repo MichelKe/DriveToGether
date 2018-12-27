@@ -5,14 +5,15 @@ namespace DriveToGether.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DriveToGether.Models.EventDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<DriveToGether.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "DriveToGether.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(DriveToGether.Models.EventDBContext context)
+        protected override void Seed(DriveToGether.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
