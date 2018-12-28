@@ -21,8 +21,8 @@
                     <li>AUTo4</li>
                 </ul>
              <div>
-                 <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">in auto Einschreiben &raquo;</a>
-                 <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">auto hinzufügen &raquo;</a>
+                 <a runat="server" class="btn btn-default" href="~/Views/Car/AddCar">in auto Einschreiben &raquo;</a>
+                 <a runat="server" class="btn btn-default" href="~/Views/Car/AddCar">auto hinzufügen &raquo;</a>
              </div>
             </div>
             

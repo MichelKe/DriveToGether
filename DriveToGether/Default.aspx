@@ -17,11 +17,11 @@
                     </p>
                     </div>
                 <div class="col-md-2">
-                    <p>
+
                        <h2>datum</h2>
-                    </p>
+
                     <p>
-                        <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Zu den Infos &raquo;</a>
+                        <a runat="server" class="btn btn-default" href="~/Views/Event/EventDetails">Zu den Infos &raquo;</a>
                     </p>
                 </div>
             </div>
@@ -36,11 +36,11 @@
                     </p>
                     </div>
                 <div class="col-md-2">
-                    <p>
+
                        <h2>datum</h2>
-                    </p>
+
                     <p>
-                        <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Zu den Infos &raquo;</a>
+                        <a runat="server" class="btn btn-default" href="~/Views/Event/EventDetails">Zu den Infos &raquo;</a>
                     </p>
                 </div>
             </div>
@@ -55,11 +55,11 @@
                     </p>
                     </div>
                 <div class="col-md-2">
-                    <p>
+
                        <h2>datum</h2>
-                    </p>
+
                     <p>
-                        <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Zu den Infos &raquo;</a>
+                        <a runat="server" class="btn btn-default" href="~/Views/Event/EventDetails">Zu den Infos &raquo;</a>
                     </p>
                 </div>
             </div>

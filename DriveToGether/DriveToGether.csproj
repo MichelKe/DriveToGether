@@ -180,7 +180,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EventDetails.aspx" />
+    <Content Include="Views\Event\EventDetails.aspx" />
     <Content Include="About.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
@@ -256,11 +256,11 @@
     <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventDetails.aspx.cs">
+    <Compile Include="Views\Event\EventDetails.aspx.cs">
       <DependentUpon>EventDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EventDetails.aspx.designer.cs">
+    <Compile Include="Views\Event\EventDetails.aspx.designer.cs">
       <DependentUpon>EventDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
@@ -321,7 +321,6 @@
     </Compile>
     <Compile Include="Account\ManageVorname.aspx.cs">
       <DependentUpon>ManageVorname.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\ManageVorname.aspx.designer.cs">
       <DependentUpon>ManageVorname.aspx</DependentUpon>
@@ -458,8 +457,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Event\" />
-    <Folder Include="Views\PorcoDio\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

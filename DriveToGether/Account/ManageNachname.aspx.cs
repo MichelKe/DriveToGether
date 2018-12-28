@@ -49,7 +49,7 @@ namespace DriveToGether.Account
             }
         }
 
-        protected void ChangePassword_Click(object sender, EventArgs e)
+        protected void ChangeNachname_Click(object sender, EventArgs e)
         {
             if (IsValid)
             {

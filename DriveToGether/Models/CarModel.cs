@@ -16,8 +16,5 @@ namespace DriveToGether.Models
         public int Event_ID { get; set; }
     }
 
-   // public class CarDBContext : DbContext
-    //{
-    //    public DbSet<Car> Cars { get; set; }
-   // }
+    public class AddCarToList
 }

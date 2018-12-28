@@ -1,7 +1,7 @@
-﻿<%@ Page Title="Registrieren" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddCar.aspx.cs" Inherits="DriveToGether.Account.Register" %>
+﻿<%@ Page Title="Auto Hinzufügen" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddCar.aspx.cs" Inherits="DriveToGether.Account.Register" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2><%: Title %>.</h2>
+    <%--<h2><%: Title %>.</h2>--%>
     <p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />
     </p>
@@ -47,9 +47,9 @@
             <div class="col-md-offset-2 col-md-10">
                 <asp:Button runat="server" OnClick="CreateUser_Click" Text="Hinzufügen" CssClass="btn btn-default" />
             </div>
-            <div class="col-md-offset-2 col-md-10">
-                <asp:Button runat="server" OnClick="x-xREDIRECT_BACKx-x" Text="Abbrechen" CssClass="btn btn-default" />
-            </div>
+            <%--<div class="col-md-offset-2 col-md-10">
+                <asp:Button runat="server" OnClick="RedirectBack_Click" Text="Abbrechen" CssClass="btn btn-default" />
+            </div>--%>
         </div>
     </div>
 </asp:Content>

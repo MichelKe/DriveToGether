@@ -11,7 +11,7 @@ namespace DriveToGether.Models
         public static List<Event> EventTable = new List<Event>() {
             new Event()
             {
-                ID = getEventID(), // = 0
+                ID = GetEventID(), // = 0
                 Name = "Fussballspiel Vaduz",
                 Details = "Abfahrt um 8:00 Uhr",
                 Datum = new DateTime(2018, 12, 19),
@@ -20,7 +20,7 @@ namespace DriveToGether.Models
 
             new Event()
             {
-                ID = getEventID(), // = 1
+                ID = GetEventID(), // = 1
                 Name = "Spielplausch St.Gallen",
                 Details = "Beginn: 17:00; Ende: 23:00; Bitte Sportsachen mitnehmen, für Verpflegung ist gesorgt",
                 Datum = new DateTime(2018, 12, 23)
@@ -28,7 +28,7 @@ namespace DriveToGether.Models
 
             new Event()
             {
-                ID = getEventID(), // = 2
+                ID = GetEventID(), // = 2
                 Name = "Skitag Savonin",
                 Details = "Abfahrt um 6:15 Uhr in St.Gallen; Zurück um etwa 18:15; Skisachen mitbringen!",
                 Datum = new DateTime(2019, 1, 12),
@@ -38,7 +38,7 @@ namespace DriveToGether.Models
         };
 
         private static int _EventID = 0;
-        public static int getEventID()
+        public static int GetEventID()
         {
             return _EventID++;
         }
@@ -46,7 +46,7 @@ namespace DriveToGether.Models
         public static List<Car> CarTable = new List<Car>() {
             new Car()
             {
-                ID = getCarID(),
+                ID = GetCarID(),
                 Name = "Auto Meier",
                 Fahrer = "Herr Meier",
                 Details = "Abfahrt um 8:00 Uhr",
@@ -56,7 +56,7 @@ namespace DriveToGether.Models
 
             new Car()
             {
-                ID = getCarID(),
+                ID = GetCarID(),
                 Name = "Auto Kempf",
                 Fahrer = "Michel Kempf",
                 Details = "Abfahrt um 8:00 Uhr",
@@ -66,7 +66,7 @@ namespace DriveToGether.Models
 
             new Car()
             {
-                ID = getCarID(),
+                ID = GetCarID(),
                 Name = "Club-Bus",
                 Fahrer = "Der Trainer",
                 Details = "Abfahrt um 7:55 Uhr",
@@ -75,26 +75,26 @@ namespace DriveToGether.Models
             }
         };
 
-        private static int _CarID = 0;
-        public static int getCarID()
+        private static readonly int _CarID = 0;
+        public static int GetCarID()
         {
-            return _EventID++;
+            return _CarID++;
         }
     }
 
 }
-public class tClass
-{
-    public Event test(int t)
-    {
-        int ind = DB.EventTable.FindIndex(m => m.ID == t);
-        if (ind >= 0) return DB.EventTable[ind];
-        return null;
-    }
+//public class tClass
+//{
+//    public Event test(int t)
+//    {
+//        int ind = DB.EventTable.FindIndex(m => m.ID == t);
+//        if (ind >= 0) return DB.EventTable[ind];
+//        return null;
+//    }
 
-    public Event updateEvent(int id)
-    {
+//    public Event updateEvent(int id)
+//    {
  
-        return (from md in DB.EventTable where md.ID == id select md).FirstOrDefault(); //auch bekannt als linq (wie SQL)
-    }
-}
+//        return (from md in DB.EventTable where md.ID == id select md).FirstOrDefault(); //auch bekannt als linq (wie SQL)
+//    }
+//}
