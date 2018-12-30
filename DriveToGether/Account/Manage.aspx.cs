@@ -14,6 +14,23 @@ namespace DriveToGether.Account
 {
     public partial class Manage : System.Web.UI.Page
     {
+        protected string Vorname
+        {
+            get
+            {
+                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(User.Identity.GetUserId());
+                return manager.Vorname;
+            }
+
+        }
+        protected string Nachname
+        {
+            get
+            {
+                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(User.Identity.GetUserId());
+                return manager.Nachname;
+            }
+        }
         protected string SuccessMessage
         {
             get;
@@ -57,7 +74,7 @@ namespace DriveToGether.Account
                 }
                 else
                 {
-                    CreatePassword.Visible = true;
+                    //CreatePassword.Visible = true;
                     ChangePassword.Visible = false;
                 }
 

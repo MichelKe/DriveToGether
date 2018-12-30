@@ -10,7 +10,7 @@
 namespace DriveToGether.Account {
     
     
-    public partial class Register {
+    public partial class addCar {
         
         /// <summary>
         /// ErrorMessage-Steuerelement
@@ -49,12 +49,12 @@ namespace DriveToGether.Account {
         protected global::System.Web.UI.WebControls.TextBox CarDetails;
         
         /// <summary>
-        /// Plätze-Steuerelement
+        /// Plaetze-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Plätze;
+        protected global::System.Web.UI.WebControls.TextBox Plaetze;
     }
 }

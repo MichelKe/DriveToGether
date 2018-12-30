@@ -9,32 +9,9 @@ namespace DriveToGether.Models
     public static class DB
     {
         public static List<Event> EventTable = new List<Event>() {
-            new Event()
-            {
-                ID = GetEventID(), // = 0
-                Name = "Fussballspiel Vaduz",
-                Details = "Abfahrt um 8:00 Uhr",
-                Datum = new DateTime(2018, 12, 19),
-                //Datum = DateTime.Now.AddDays(20)
-            },
-
-            new Event()
-            {
-                ID = GetEventID(), // = 1
-                Name = "Spielplausch St.Gallen",
-                Details = "Beginn: 17:00; Ende: 23:00; Bitte Sportsachen mitnehmen, für Verpflegung ist gesorgt",
-                Datum = new DateTime(2018, 12, 23)
-            },
-
-            new Event()
-            {
-                ID = GetEventID(), // = 2
-                Name = "Skitag Savonin",
-                Details = "Abfahrt um 6:15 Uhr in St.Gallen; Zurück um etwa 18:15; Skisachen mitbringen!",
-                Datum = new DateTime(2019, 1, 12),
-                //Datum = DateTime.Now.AddDays(20)
-            }
-
+            new Event(GetEventID(), "Fussballspiel Vaduz", "Abfahrt um 8:00 Uhr", new DateTime(2018, 12, 19)),
+            new Event(GetEventID(), "Fussballspiel Bern", "Abfahrt um 12:00 Uhr", new DateTime(2019, 1, 19)),
+            new Event(GetEventID(), "Fussballspiel Thailand", "Abfahrt um 5:00 Uhr", new DateTime(2019, 1, 9))
         };
 
         private static int _EventID = 0;
@@ -44,42 +21,28 @@ namespace DriveToGether.Models
         }
 
         public static List<Car> CarTable = new List<Car>() {
-            new Car()
-            {
-                ID = GetCarID(),
-                Name = "Auto Meier",
-                Fahrer = "Herr Meier",
-                Details = "Abfahrt um 8:00 Uhr",
-                Plaetze = 5,
-                Event_ID = 1
-            },
-
-            new Car()
-            {
-                ID = GetCarID(),
-                Name = "Auto Kempf",
-                Fahrer = "Michel Kempf",
-                Details = "Abfahrt um 8:00 Uhr",
-                Plaetze = 3,
-                Event_ID = 1
-            },
-
-            new Car()
-            {
-                ID = GetCarID(),
-                Name = "Club-Bus",
-                Fahrer = "Der Trainer",
-                Details = "Abfahrt um 7:55 Uhr",
-                Plaetze = 11,
-                Event_ID = 1
-            }
+            new Car(GetCarID(), "Auto Hansdotter", "Herr Hansdotter", "Abfahrt um 8:00 Uhr", 5, 0),
+            new Car(GetCarID(), "Auto q", "Herr q", "Abfahrt b 8:00 Uhr", 5, 0),
+            new Car(GetCarID(), "Auto w", "Herr w", "Abfahrt v 8:00 Uhr", 5, 0),
+            new Car(GetCarID(), "Auto Meier", "Herr Meier", "Abfahrt um 8:00 Uhr", 5, 1),
+            new Car(GetCarID(), "Auto a", "Herr a", "Abfahrt b 8:00 Uhr", 5, 1),
+            new Car(GetCarID(), "Auto b", "Herr b", "Abfahrt v 8:00 Uhr", 5, 1),
+            new Car(GetCarID(), "Auto Klaus", "Herr klaus", "Abfahrt um 8:00 Uhr", 5, 2),
+            new Car(GetCarID(), "Auto x", "Herr x", "Abfahrt b 8:00 Uhr", 5, 2),
+            new Car(GetCarID(), "Auto y", "Herr y", "Abfahrt v 8:00 Uhr", 5, 2)
+            
         };
 
-        private static readonly int _CarID = 0;
+        private static int _CarID = 0;
         public static int GetCarID()
         {
             return _CarID++;
         }
+
+        public static List<Dist> DistTable = new List<Dist>()
+        {
+            //new Dist(2, List<1,2>);
+        };
     }
 
 }

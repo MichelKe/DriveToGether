@@ -1,10 +1,10 @@
-﻿<%@ Page Title="Vorname verwalten" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageNachname.aspx.cs" Inherits="DriveToGether.Account.ManagePassword" %>
+﻿<%@ Page Title="Vorname verwalten" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageNachname.aspx.cs" Inherits="DriveToGether.Account.ManageNachname" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
     <div class="form-horizontal">
-        <section id="nachnameForm">
-            <asp:PlaceHolder runat="server" ID="changeNachnameHolder" Visible="false">
+        <span id="nachnameForm">
+            <asp:PlaceHolder runat="server" ID="changeNachnameHolder">
                 <div class="form-horizontal">
                     <h4>Formular zum Ändern des Nachnamens</h4>
                     <hr />
@@ -20,11 +20,11 @@
            
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" Text="Nachnamen ändern" OnClick="NewNachname_Click" CssClass="btn btn-default" />
+                            <asp:Button runat="server" Text="Nachnamen ändern" OnClick="ChangeNachname_Click" CssClass="btn btn-default" />
                         </div>
                     </div>
                 </div>
             </asp:PlaceHolder>
-        </section>
+        </span>
     </div>
 </asp:Content>

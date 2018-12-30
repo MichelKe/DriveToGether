@@ -10,7 +10,7 @@
 namespace DriveToGether.Account {
     
     
-    public partial class ManagePassword {
+    public partial class ManageNachname {
         
         /// <summary>
         /// changeNachnameHolder-Steuerelement

@@ -8,13 +8,42 @@ namespace DriveToGether.Models
 {
     public class Car
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Fahrer { get; set; }
-        public string Details { get; set; }
-        public int Plaetze { get; set; }
-        public int Event_ID { get; set; }
+        public int ID;
+        public string Name;
+        public string Fahrer;
+        public string Details;
+        public int Plaetze;
+        public int Event_ID;
+
+        public Car(int id, string name, string fahrer, string details, int plaetze, int event_id)
+        {
+            ID = id;
+            Name = name;
+            Fahrer = fahrer;
+            Details = details;
+            Plaetze = plaetze;
+            Event_ID = event_id;
+        }
+        
+        public void AddCar()
+        {
+            DB.CarTable.Add(this);
+        }
+
+        public static List<Car> GetCarList(int id)
+        {
+            List<Car> cartable = DB.CarTable;
+            List<Car> carReturn = new List<Car>();
+            foreach(Car auto in cartable)
+            {
+                if(auto.Event_ID == id)
+                {
+                    carReturn.Add(auto);
+                }
+            }
+            return carReturn;
+        }
     }
 
-    public class AddCarToList
+    //public class AddCarToList
 }

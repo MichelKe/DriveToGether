@@ -6,35 +6,23 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using DriveToGether.Models;
+using DriveToGether.Controllers;
 
 namespace DriveToGether.Account
 {
-    public partial class Register : Page
+    public partial class addCar : Page
     {
         protected void AddCar_Click(object sender, EventArgs e)
         {
-            //var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            //var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            //var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text, Vorname =  Vorname.Text, Nachname = Nachname.Text};
-            //IdentityResult result = manager.Create(user, Password.Text);
-            //if (result.Succeeded)
-            //{
-            //    // Weitere Informationen zum Aktivieren der Kontobestätigung und Kennwortzurücksetzung finden Sie unter https://go.microsoft.com/fwlink/?LinkID=320771
-            //    //string code = manager.GenerateEmailConfirmationToken(user.Id);
-            //    //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
-            //    //manager.SendEmail(user.Id, "Konto bestätigen", "Bitte bestätigen Sie Ihr Konto. Klicken Sie dazu <a href=\"" + callbackUrl + "\">hier</a>.");
-
-            //    signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
-            //    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-            //}
-            //else 
-            //{
-            //    ErrorMessage.Text = result.Errors.FirstOrDefault();
-            //}
+            int id = Convert.ToInt16(Request.QueryString["id"]);
+            CarController.AddCar(Fahrzeugname.Text, FahrerName.Text, CarDetails.Text, Convert.ToInt16(Plaetze.Text), id);
+            //var user = new Car() { Name = Fahrzeugname.Text, FahrerName = FahrerName.Text, CarDetails = CarDetails.Text, Nachname = Nachname.Text };
+            Response.Redirect("/Views/Event/EventDetails.aspx?id="+id);
         }
         protected void RedirectBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("EventDetails.aspx");
+            int id = Convert.ToInt16(Request.QueryString["id"]);
+            Response.Redirect("/Views/Event/EventDetails.aspx?id=" + id);
         }
     }
 }

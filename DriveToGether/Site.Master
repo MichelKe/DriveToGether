@@ -78,7 +78,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Meine ASP.NET-Anwendung</p>
+                <p>&copy; <%: DateTime.Now.Year %> - DriveToGether</p>
             </footer>
         </div>
     </form>

@@ -19,17 +19,18 @@
                     <dt>Vorname:</dt>
                     <dd>
                         
-                        <span>x.x VORNAME x.x</span>
+                        <span><%: Vorname  %></span>
                     </dd>
                     <dt>Nachname:</dt>
                     <dd>
                        
-                        <span>x.x NACHNAME x.x</span>
+                        <span><%: Nachname  %></span>
                     </dd>
                     <dt>Email:</dt>
                     <dd>
                         <span><%: Context.User.Identity.GetUserName()  %></span>
                     </dd>
+                 </dl>
             </div>
         </div>
         <div class="col-md-6">

@@ -1,32 +1,6 @@
-﻿<%@ Page Title="Eventdetails" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EventDetails.aspx.cs" Inherits="DriveToGether.About" %>
+﻿<%@ Page Title="Eventdetails" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EventDetails.aspx.cs" Inherits="DriveToGether.EventDetails" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
-    <h3>EVENT _ NAME</h3>
-    <div class="row">
-        <div class="col-md-6">
-            <h2>Details</h2>
-             <p>EVENT DETAILS -- Use this area to provide additional information.Use this area to provide additional information.Use this area to provide additional information.</p>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <h2>- DATUM -</h2>
-            </div>
-            <div class="row">
-                <h2>Autos</h2>
-                <ul>
-                    <li>AUTo1</li>
-                    <li>AUTo2</li>
-                    <li>AUTo3</li>
-                    <li>AUTo4</li>
-                </ul>
-             <div>
-                 <a runat="server" class="btn btn-default" href="~/Views/Car/AddCar">in auto Einschreiben &raquo;</a>
-                 <a runat="server" class="btn btn-default" href="~/Views/Car/AddCar">auto hinzufügen &raquo;</a>
-             </div>
-            </div>
-            
-        </div>
-    </div>
-   
+    <div runat="server" id="event_details_container"><span runat="server" id="carlist" style="display: none;"></span></div>
 </asp:Content>
