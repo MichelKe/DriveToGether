@@ -1,7 +1,6 @@
-﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="DriveToGether.About" %>
+﻿<%@ Page Title="Über uns" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="DriveToGether.About" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
-    <h3>Your application description page.</h3>
-    <p>Use this area to provide additional information.</p>
+    <p>Diese Applikation kann verwendet werden um sich für eine Mitfahrgelegenheit einzutragen sowie auch neue Mitfahrgelegenheiten anzubieten.</p>
 </asp:Content>
