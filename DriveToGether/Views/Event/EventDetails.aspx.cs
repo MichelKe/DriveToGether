@@ -28,7 +28,7 @@ namespace DriveToGether
         protected HtmlGenericControl LoadCars(int id, HtmlGenericControl ul)
         {
             HtmlGenericControl ulelem = ul;
-			//Jedes Objekt im CarController wird ausgelesen und zurüclgegeben
+			//Jedes Objekt im CarController wird ausgelesen und zurückgegeben
             foreach (HtmlGenericControl hgc in CarController.GetCarList(id))
             { 
                 ulelem.Controls.Add(hgc);
@@ -40,7 +40,7 @@ namespace DriveToGether
         protected void AddToCar_Click()
         {
 			//ID wird konvertiert
-            int id = Convert.ToInt16(Request.QueryString["id"]);
+            int id = Convert.ToInt16(Request["id"]);
 			//Userid wird ausgelesen und in Variable geschrieben
             string user_id_s = User.Identity.GetUserId();
 			//ID wird kovertiert

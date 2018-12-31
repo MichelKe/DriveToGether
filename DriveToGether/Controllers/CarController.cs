@@ -36,7 +36,7 @@ namespace DriveToGether.Controllers
 			//Jedes Auto in der Liste wird durchlaufen
             foreach (Car auto in AutoListe)
             {
-                List<int> mitfahrer = CarController.GetUsersForCar(auto.ID);
+                List<int> mitfahrer = GetUsersForCar(auto.ID);
                 string mitfahrerString = "";
 				//Jeder Passagier wird durchlaufen
                 foreach (int passagier in mitfahrer)
