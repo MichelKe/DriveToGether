@@ -6,6 +6,7 @@ using System.Web;
 
 namespace DriveToGether.Models
 {
+	//Klasse zur Verwaltung von Events
     public class Event
     {
         public int ID;
@@ -13,6 +14,7 @@ namespace DriveToGether.Models
         public string Details;
         public DateTime Datum;
 
+		//Event Attribute
         public Event(int id, string name, string details, DateTime datum)
         {
             ID = id;
@@ -21,11 +23,13 @@ namespace DriveToGether.Models
             Datum = datum;
         }
 
+		//Gibt Eventliste zurück
         public static List<Event> GetEventList()
         {
             return DB.EventTable;
         }
 
+		//Gibt Event per ID zurück
         public static Event GetEvent(int id)
         {
             return DB.EventTable.ElementAt(id);

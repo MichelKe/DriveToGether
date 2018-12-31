@@ -20,11 +20,13 @@ namespace DriveToGether.Controllers
             return View();
         }
 
+		
         public static List<HtmlGenericControl> GetEventList()
         {
             List<Event> EventListe = Event.GetEventList();
             List<HtmlGenericControl> EventHtml = new List<HtmlGenericControl>();
             
+			//HTML element wird erstellt
             foreach (Event ev in EventListe)
             {
                 DateTimeFormatInfo fmt = (new CultureInfo("de-DE")).DateTimeFormat;
@@ -33,14 +35,16 @@ namespace DriveToGether.Controllers
                 string htmltxt = string.Format(seltxt, ev.Name, ev.Details, date, ev.ID);
                 HtmlGenericControl htmlelem = new HtmlGenericControl("div");
                 htmlelem.InnerHtml = htmltxt;
+				//Element wird hinzugefügt
                 EventHtml.Add(htmlelem);
             }
-
+			//Seite wird zurückgegeben
             return EventHtml;
         }
 
         public static HtmlGenericControl GetEvent(int id, HtmlGenericControl ul)
         {
+			//HTML Element wird erstellt
             Event ev = Event.GetEvent(id);
             HtmlGenericControl EventHtml = new HtmlGenericControl("div");
             DateTimeFormatInfo fmt = (new CultureInfo("de-DE")).DateTimeFormat;
@@ -51,9 +55,11 @@ namespace DriveToGether.Controllers
             string htmltxt2 = string.Format(seltxt2, ev.ID);
             EventHtml.InnerHtml = htmltxt + PrintUl(ul) + htmltxt2;
             
+			//Element wird zurückgegeben
             return EventHtml;
         }
 
+		//Tabelle wird mit Einträgen erstellt
         public static string PrintUl(HtmlGenericControl ul)
         {
             StringBuilder generatedHtml = new StringBuilder();
@@ -61,7 +67,9 @@ namespace DriveToGether.Controllers
             {
                 using (var htmlTextWriter = new HtmlTextWriter(htmlStringWriter))
                 {
+					//Zeile wird hinzugefügt
                     ul.RenderControl(htmlTextWriter);
+					//Element wird ausgegeben
                     return generatedHtml.ToString();
                 }
             }

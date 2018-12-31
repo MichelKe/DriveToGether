@@ -1,5 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="DriveToGether.SiteMaster" %>
-
+<!-- Stellt als Maste Site funktionen wie NavBar usw. zu Verfügung -->
 <!DOCTYPE html>
 
 <html lang="en">

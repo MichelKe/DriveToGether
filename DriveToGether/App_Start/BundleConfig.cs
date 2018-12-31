@@ -7,6 +7,7 @@ using System.Web.UI;
 
 namespace DriveToGether
 {
+	//Klasse ohne Änderung
     public class BundleConfig
     {
         // Weitere Informationen zur Bündelung finden Sie unter https://go.microsoft.com/fwlink/?LinkID=303951

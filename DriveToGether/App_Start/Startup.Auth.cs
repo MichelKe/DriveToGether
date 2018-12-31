@@ -11,6 +11,7 @@ using DriveToGether.Models;
 
 namespace DriveToGether
 {
+	//Authentifizierung beim Starten der Webapplikation
     public partial class Startup {
 
         // Weitere Informationen zur Konfiguration der Authentifizierung finden Sie unter https://go.microsoft.com/fwlink/?LinkId=301883
