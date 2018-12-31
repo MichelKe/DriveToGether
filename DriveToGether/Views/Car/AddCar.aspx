@@ -36,9 +36,12 @@
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="Plaetze" CssClass="col-md-2 control-label">Anzahl Plätze</asp:Label>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="Plaetze" CssClass="form-control"/>
+                <asp:TextBox runat="server" ID="Plaetze" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Plaetze"
                     CssClass="text-danger" ErrorMessage="Das Anzahl-Plätze-Feld ist erforderlich." />
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="Plaetze" runat="server"
+                    CssClass="text-danger" ErrorMessage="Nur Zahlen als eingabe zulässig" ValidationExpression="\d+">
+                </asp:RegularExpressionValidator>
             </div>
         </div>
         
