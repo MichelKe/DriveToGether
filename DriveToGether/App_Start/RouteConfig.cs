@@ -7,6 +7,7 @@ using Microsoft.AspNet.FriendlyUrls;
 
 namespace DriveToGether
 {
+	//Standartklassen, Routing der Seiten
     public static class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)

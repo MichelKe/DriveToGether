@@ -10,6 +10,7 @@ using DriveToGether.Models;
 
 namespace DriveToGether
 {
+	//Services welche nicht verwendet werden (Email, SMS usw.)
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)

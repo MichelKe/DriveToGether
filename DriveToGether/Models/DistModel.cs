@@ -34,11 +34,14 @@ namespace DriveToGether.Models
             return passListRes;
         }
 
+		//User zu Auto hinzufügen
         public static void AddUserToCar(int car_id, int user_id)
         {
             List<Dist> distTable = DB.DistTable;
+			//Jedes object in Liste wird ausgelesen
             foreach (Dist passList in distTable)
             {
+				//Überprüfung der CarID
                 if (passList.Car_ID == car_id)
                 {
                     Dist passListTEMP = passList;

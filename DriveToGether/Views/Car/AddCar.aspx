@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="Auto Hinzufügen" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddCar.aspx.cs" Inherits="DriveToGether.Account.addCar" %>
-
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
     <p class="text-danger">
