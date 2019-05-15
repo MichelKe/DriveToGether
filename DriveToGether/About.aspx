@@ -2,5 +2,5 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
-    <p>TDiese Applikation kann verwendet werden um sich für eine Mitfahrgelegenheit einzutragen sowie auch neue Mitfahrgelegenheiten anzubieten.</p>
+    <p>Diese Applikation kann verwendet werden um sich für eine Mitfahrgelegenheit einzutragen sowie auch neue Mitfahrgelegenheiten anzubieten.</p>
 </asp:Content>
