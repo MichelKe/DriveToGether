@@ -19,7 +19,8 @@ namespace DriveToGether.Models
         public string Mail { get; set; }
         public string Anschrift { get; set; }
         public string Ort { get; set; }
-        public string PLZ { get; set; }
+        public bool IsAdmin { get; set; }
+
 
         public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)
         {
