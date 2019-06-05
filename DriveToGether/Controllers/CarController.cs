@@ -17,10 +17,10 @@ namespace DriveToGether.Controllers
         }
 
 		//Fügt Auto hinzu
-        public static void AddCar(string Name, string Fahrer, string Details, int Plaetze, int EventID)
+        public static void AddCar(string Name, string Fahrer_Vorname, string Fahrer_Nachname, string Details, string Autonummer, int Plaetze, int EventID)
         {
 			//Neuer DB Eintrag wird erstellt
-            Car Auto = new Car(DB.GetCarID(), Name, Fahrer, Details, Plaetze, EventID);
+            Car Auto = new Car(Name, Fahrer_Vorname, Fahrer_Nachname, Details, Autonummer, Plaetze, EventID);
 			//Funktion um Auto in Tabelle hinzuzufügen wird erstellt
             Auto.AddCar();
         }
@@ -36,7 +36,7 @@ namespace DriveToGether.Controllers
 			//Jedes Auto in der Liste wird durchlaufen
             foreach (Car auto in AutoListe)
             {
-                List<int> mitfahrer = GetUsersForCar(auto.ID);
+                List<int> mitfahrer = GetUsersForCar(auto.Autonummer);
                 string mitfahrerString = "";
 				//Jeder Passagier wird durchlaufen
                 foreach (int passagier in mitfahrer)
@@ -48,7 +48,7 @@ namespace DriveToGether.Controllers
                 string htmltxt = "<a runat='server' class='btn btn-default' onServerClick='AddToCar_Click' href='/Views/Event/EventDetails.aspx?id="+id+"'>Einschreiben</a>";
                 string htmltxt1 = "<br>";
                 HtmlGenericControl htmlelem = new HtmlGenericControl("li");
-                htmlelem.InnerHtml = string.Format("{0}, {1}, {2} {3} {4} {5}", auto.Name, auto.Fahrer, (auto.Plaetze - mitfahrer.Count) , htmltxt, htmltxt1, mitfahrerString);
+                htmlelem.InnerHtml = string.Format("{0}, {1}, {2}; {3} {4} {5} {6}", auto.Name, auto.Fahrer_Vorname, auto.Fahrer_Nachname, (auto.Plaetze - mitfahrer.Count) , htmltxt, htmltxt1, mitfahrerString);
 
 				//Element wird hinzugefügt
                 AutoHTML.Add(htmlelem);
@@ -58,16 +58,16 @@ namespace DriveToGether.Controllers
         }
 
 		//Gibt Mitfahrer zurück
-        public static List<int> GetUsersForCar(int car_id)
+        public static List<int> GetUsersForCar(string autonummer)
         {
-            List<int> MitfahrerListe = Dist.GetUsersForCar(car_id);
+            List<int> MitfahrerListe = Dist.GetUsersForCar(autonummer);
             return MitfahrerListe; 
         }
 
 		//Fügt User einem Auto hinzu
-        public static void AddUserToCar(int car_id, int user_id)
+        public static void AddUserToCar(string autonummer, int user_id)
         {
-            Dist.AddUserToCar(car_id, user_id);
+            Dist.AddUserToCar(autonummer, user_id);
 	    }
     }
 }

@@ -18,10 +18,18 @@
             </div>
         </div>
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="FahrerName" CssClass="col-md-2 control-label">Name des Fahrers</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="FahrerVorname" CssClass="col-md-2 control-label">Vorname des Fahrers</asp:Label>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="FahrerName" CssClass="form-control"/>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="FahrerName"
+                <asp:TextBox runat="server" ID="FahrerVorname" CssClass="form-control"/>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="FahrerVorname"
+                    CssClass="text-danger" ErrorMessage="Das Faherename-Feld ist erforderlich." />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="FahrerNachname" CssClass="col-md-2 control-label">Nachname des Fahrers</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="FahrerNachname" CssClass="form-control"/>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="FahrerNachname"
                     CssClass="text-danger" ErrorMessage="Das Faherename-Feld ist erforderlich." />
             </div>
         </div>
@@ -30,6 +38,13 @@
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="CarDetails" CssClass="form-control"/>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="CarDetails"
+                    CssClass="text-danger" ErrorMessage="Das Details-Feld ist erforderlich." />
+            </div>
+        </div><div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="Autonummer" CssClass="col-md-2 control-label">Autonummer (z.b SG123)</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="Autonummer" CssClass="form-control"/>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Autonummer"
                     CssClass="text-danger" ErrorMessage="Das Details-Feld ist erforderlich." />
             </div>
         </div>

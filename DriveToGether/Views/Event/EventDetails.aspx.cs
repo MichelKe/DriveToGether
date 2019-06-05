@@ -47,7 +47,7 @@ namespace DriveToGether
             int user_id = Convert.ToInt16(user_id_s);
 
 			//User wird mit einer Controllerfunktion dem zugewiesen
-            CarController.AddUserToCar(id, user_id);
+            //CarController.AddUserToCar(id, user_id);
 
 			//Eventseite wird aufgerufen
             Response.Redirect("/Views/Event/EventDetails.aspx?id=" + id);

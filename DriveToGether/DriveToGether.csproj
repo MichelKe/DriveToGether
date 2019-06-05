@@ -256,7 +256,12 @@
     <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\OrtModel.cs" />
+    <Compile Include="Models\RolleModel.cs" />
+    <Compile Include="Models\CarMitgliedModel.cs" />
     <Compile Include="Models\DistModel.cs" />
+    <Compile Include="Models\VereinEventModel.cs" />
+    <Compile Include="Models\VereinModel.cs" />
     <Compile Include="Views\Event\EventDetails.aspx.cs">
       <DependentUpon>EventDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

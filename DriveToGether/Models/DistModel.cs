@@ -8,25 +8,25 @@ namespace DriveToGether.Models
 {
     public class Dist
     {
-        public int Car_ID;
+        public string Autonummer;
 
         public List<int> Users = new List<int>();
 
-        public Dist(int id, List<int> users)
+        public Dist(string autonummer, List<int> users)
         {
-            Car_ID = id;
+            Autonummer = autonummer;
             Users = users;
         }
         
 
 
-        public static List<int> GetUsersForCar(int car_id)
+        public static List<int> GetUsersForCar(string autonummer)
         {
             List<Dist> distTable = DB.DistTable;
             List<int> passListRes = new List<int>();
             foreach (Dist passList in distTable)
             {
-                if (passList.Car_ID == car_id)
+                if (passList.Autonummer == autonummer)
                 {
                     passListRes = passList.Users;
                 }
@@ -35,19 +35,20 @@ namespace DriveToGether.Models
         }
 
 		//User zu Auto hinzufügen
-        public static void AddUserToCar(int car_id, int user_id)
+        public static void AddUserToCar(string autonummer, int user_id)
         {
             List<Dist> distTable = DB.DistTable;
 			//Jedes object in Liste wird ausgelesen
             foreach (Dist passList in distTable)
             {
 				//Überprüfung der CarID
-                if (passList.Car_ID == car_id)
-                {
-                    Dist passListTEMP = passList;
-                    passListTEMP.Users.Add(user_id);
-                    DB.DistTable.ElementAt(car_id).Users = passListTEMP.Users;
-                }
+                //if (passList.Autonummer == autonummer)
+                //{
+                //    Dist passListTEMP = passList;
+                //    passListTEMP.Users.Add(user_id);
+                //    //DB.DistTable.ElementAt(autonummer).Users = passListTEMP.Users;
+                //    DB.DistTable.IndexOf(autonummer).Users = passListTEMP.Users;
+                //}
             }
             
      

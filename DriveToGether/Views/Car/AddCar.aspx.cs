@@ -18,7 +18,7 @@ namespace DriveToGether.Account
 			//ID wird konvertiert
             int id = Convert.ToInt16(Request.QueryString["id"]);
 			//Auto wird in Liste in CarController hinzugefügt
-            CarController.AddCar(Fahrzeugname.Text, FahrerName.Text, CarDetails.Text, Convert.ToInt16(Plaetze.Text), id);
+            CarController.AddCar(Fahrzeugname.Text, FahrerVorname.Text, FahrerNachname.Text, CarDetails.Text, Autonummer.Text, Convert.ToInt16(Plaetze.Text), id);
 			//var user = new Car() { Name = Fahrzeugname.Text, FahrerName = FahrerName.Text, CarDetails = CarDetails.Text, Nachname = Nachname.Text };
 
 			//Seite des entsprechenden Events wird aufgerufen

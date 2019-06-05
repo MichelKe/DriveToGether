@@ -10,20 +10,22 @@ namespace DriveToGether.Models
     {
 		//Membervariaben Public ????
 
-        public int ID;
         public string Name;
-        public string Fahrer;
+        public string Fahrer_Vorname;
+        public string Fahrer_Nachname;
         public string Details;
+        public string Autonummer;
         public int Plaetze;
         public int Event_ID;
 
 		//Attribute für Auto
-        public Car(int id, string name, string fahrer, string details, int plaetze, int event_id)
+        public Car(string name, string vorname_fahrer, string nachname_fahrer, string details, string autonummer, int plaetze, int event_id)
         {
-            ID = id;
             Name = name;
-            Fahrer = fahrer;
+            Fahrer_Vorname = vorname_fahrer;
+            Fahrer_Nachname = nachname_fahrer;
             Details = details;
+            Autonummer = autonummer;
             Plaetze = plaetze;
             Event_ID = event_id;
         }

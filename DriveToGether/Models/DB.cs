@@ -26,23 +26,23 @@ namespace DriveToGether.Models
 
 		//Beispieldaten
         public static List<Car> CarTable = new List<Car>() {
-            new Car(GetCarID(), "Auto Hansdotter", "Herr Hansdotter", "Abfahrt um 8:00 Uhr", 5, 0),
-            new Car(GetCarID(), "Auto q", "Herr q", "Abfahrt b 8:00 Uhr", 5, 0),
-            new Car(GetCarID(), "Auto w", "Herr w", "Abfahrt v 8:00 Uhr", 5, 0),
-            new Car(GetCarID(), "Auto Meier", "Herr Meier", "Abfahrt um 8:00 Uhr", 5, 1),
-            new Car(GetCarID(), "Auto a", "Herr a", "Abfahrt b 8:00 Uhr", 5, 1),
-            new Car(GetCarID(), "Auto b", "Herr b", "Abfahrt v 8:00 Uhr", 5, 1),
-            new Car(GetCarID(), "Auto Klaus", "Herr klaus", "Abfahrt um 8:00 Uhr", 5, 2),
-            new Car(GetCarID(), "Auto x", "Herr x", "Abfahrt b 8:00 Uhr", 5, 2),
-            new Car(GetCarID(), "Auto y", "Herr y", "Abfahrt v 8:00 Uhr", 5, 2)            
+            new Car("Auto Hansdotter", "Peter", "Hansdotter", "Abfahrt um 8:00 Uhr", "SG123", 5, 0),
+            new Car("Auto Meier", "Franz", "Meier", "Abfahrt um 8:00 Uhr", "SG223", 5, 0),
+            new Car("Auto 3", "13", "23", "Abfahrt um 8:00 Uhr", "SG3", 5, 0),
+            new Car("Auto 4", "14", "24", "Abfahrt um 8:00 Uhr", "SG4", 5, 0),
+            new Car("Auto 5", "15", "25", "Abfahrt um 8:00 Uhr", "SG5", 5, 0),
+            new Car("Auto 6", "16", "26", "Abfahrt um 8:00 Uhr", "SG6", 5, 0),
+            new Car("Auto 7", "17", "27", "Abfahrt um 8:00 Uhr", "SG7", 5, 0),
+            new Car("Auto 8", "18", "28", "Abfahrt um 8:00 Uhr", "SG8", 5, 0),
+            new Car("Auto 9", "19", "29", "Abfahrt um 8:00 Uhr", "SG9", 5, 0)          
         };
 
-        private static int _CarID = 0;
-		//Rückgabe CarID
-		public static int GetCarID()
-        {
-            return _CarID++;
-        }
+  //      private static int _CarID = 0;
+		////Rückgabe CarID
+		//public static int GetCarID()
+  //      {
+  //          return Autonummer;
+  //      }
 
         public static List<Dist> DistTable = new List<Dist>()
         {

@@ -31,13 +31,22 @@ namespace DriveToGether.Account {
         protected global::System.Web.UI.WebControls.TextBox Fahrzeugname;
         
         /// <summary>
-        /// FahrerName-Steuerelement
+        /// FahrerVorname-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FahrerName;
+        protected global::System.Web.UI.WebControls.TextBox FahrerVorname;
+        
+        /// <summary>
+        /// FahrerNachname-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FahrerNachname;
         
         /// <summary>
         /// CarDetails-Steuerelement
@@ -47,6 +56,15 @@ namespace DriveToGether.Account {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox CarDetails;
+        
+        /// <summary>
+        /// Autonummer-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Autonummer;
         
         /// <summary>
         /// Plaetze-Steuerelement
