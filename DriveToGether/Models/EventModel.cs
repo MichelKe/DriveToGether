@@ -28,7 +28,8 @@ namespace DriveToGether.Models
         //Generiert Eventliste
 		public static List<Event> getEventList()
         {
-            return DB.getEventList();
+            DB newDB = new DB();
+            return newDB.getEventList();
         }
 
         //Gibt bestimmtes Event aus

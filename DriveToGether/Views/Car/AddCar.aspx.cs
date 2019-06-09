@@ -16,7 +16,7 @@ namespace DriveToGether.Account
         protected void AddCar_Click(object sender, EventArgs e)
         {
             //Routerparam wird zu zwei seperaten Strings konvertiert
-            string identifier = (Request.QueryString["routeparam"]).ToString();
+            string identifier = (Request.QueryString["id"]).ToString();
             string[] identifiers = identifier.Split('_');
             string eventName = identifiers.First();
             string eventDate = identifiers.Last();
@@ -34,7 +34,7 @@ namespace DriveToGether.Account
         protected void RedirectBack_Click(object sender, EventArgs e)
         {
             //ID wird konvertiert
-            string identifier = (Request.QueryString["routeparam"]).ToString();
+            string identifier = (Request.QueryString["id"]).ToString();
             //Seite des entsprechenden Events wird aufgerufen
             Response.Redirect("/Views/Event/EventDetails.aspx?id=" + identifier);
         }

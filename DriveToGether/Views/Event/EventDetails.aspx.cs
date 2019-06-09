@@ -15,10 +15,10 @@ namespace DriveToGether
     public partial class EventDetails : Page
     {
 		//Explizite Eventseite wird geladen
-        protected void Page_Load(object sender, EventArgs e)
+        public void Page_Load(object sender, EventArgs e)
         {
 			//Routerparameter wird in zwei sparate Strings konvertiert
-            string identifier = (Request.QueryString["routeparam"]).ToString();
+            string identifier = (Request.QueryString["id"]).ToString();
             string[] identifiers = identifier.Split('_');
             string eventName = identifiers.First();
             string eventDate = identifiers.Last();
@@ -37,7 +37,7 @@ namespace DriveToGether
         }
 
 
-        protected HtmlGenericControl LoadCars(string eventName, string eventDate , HtmlGenericControl ul)
+        public HtmlGenericControl LoadCars(string eventName, string eventDate , HtmlGenericControl ul)
         {
             //Jedes Objekt im CarController wird ausgelesen und zurückgegeben
             List<HtmlGenericControl> carList = CarController.getHtmlCarList(eventName, eventDate);
@@ -52,32 +52,49 @@ namespace DriveToGether
         }
 
 		//Funktion um sich einem Auto zuzuordnen
-        protected void AddToCar_Click()
+        public void AddToCar_Click(object sender, GridViewCommandEventArgs e)
         {
+            string[] arg = new string[2];
+            arg = e.CommandArgument.ToString().Split(';');
+            string param = arg[0];
+            string[] splitparam = param.Split('_');
+            string eventName = splitparam[0];
+            string eventDate = splitparam[1];
+            string carNr = arg[1];
             //Routingparameter wird erzeugt
-            string identifier = (Request.QueryString["routeparam"]).ToString();
-            string[] identifiers = identifier.Split('_');
-            string eventName = identifiers.First();
-            string eventDate = identifiers.Last();
+            //string identifier = (Request.QueryString["id"]).ToString();
+            //string[] identifiers = identifier.Split('_');
+            //string eventName = identifiers.First();
+            //string eventDate = identifiers.Last();
+            DateTime event_date = Convert.ToDateTime(eventDate);
 
-            //Userid wird ausgelesen und in Variable geschrieben
-            string user_id_s = User.Identity.GetUserId();
-            
-            
-            //User.Identity. -- we neeeddddd the userrrr
-			//ID wird kovertiert
-            int user_id = Convert.ToInt16(user_id_s);
+            //string carNr = (Request.QueryString["car"]).ToString();
 
-            //string username = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(ID).;
+            //Useremail wird ausgelesen und in Variable geschrieben
+            string username = User.Identity.Name;
 
+            List<Mitglied> user = MitgliedController.getMitgliedViaEmail(username);
+            Mitglied mitglied = user.ElementAt(0);
+            DateTime geburtstag = Convert.ToDateTime(mitglied.Geburtstag);
+
+            List<Car> auto = CarController.selectCar(eventName, event_date, carNr);
             //string vorname, string nachname, DateTime geburtsdatum, string autonummer, string eventname, DateTime eventdatum      
-            CarMitglied newPass = new CarMitglied("", "", DateTime.Now, "", "", DateTime.Now);
+            CarMitglied newPass = new CarMitglied(mitglied.Vorname, mitglied.Nachname, geburtstag, carNr, eventName, event_date);
 
 			//User wird mit einer Controllerfunktion dem zugewiesen
             CarController.addPassangerToCar(newPass);
 
-			//Eventseite wird aufgerufen
-            Response.Redirect("/Views/Event/EventDetails.aspx?id=" + identifier);
+            //Neue UL-Listeninstanz wird erstellt
+            HtmlGenericControl autoListe = new HtmlGenericControl("ul");
+
+            //Funktion um Autos zu laden wird ausgeführt, danach der Tabelle hinzugefügt
+            autoListe = LoadCars(eventName, eventDate, autoListe);
+
+            event_details_container.Controls.Add(EventController.GetEvent(eventName, event_date, autoListe));
+
+
+            //Eventseite wird aufgerufen
+            Response.Redirect("/Views/Event/EventDetails.aspx?id=" + param);
         }
     }
 }

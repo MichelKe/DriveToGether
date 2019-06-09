@@ -32,8 +32,8 @@ namespace DriveToGether.Controllers
                 DateTimeFormatInfo fmt = (new CultureInfo("de-DE")).DateTimeFormat;
                 string date = ev.Datum.ToString("d", fmt);
                 string routingParam = ev.Name + "_" + date;
-                string seltxt = "<div class='row'><div class='col-md-10'><h2>{0}</h2><p>{1}</p><p>{2}</p></div><div class='col-md-2'><h2>{3}</h2><a href='/Views/Event/EventDetails.aspx?id={3}' />Eventdetails anzeigen</a></div></div>";
-                string htmltxt = string.Format(seltxt, ev.Name, ev.Details, ev.Datum, routingParam);
+                string seltxt = "<div class='row'><div class='col-md-10'><h2>{0}</h2><p>{1}</p><p>{2}</p></div><div class='col-md-2'><a href='/Views/Event/EventDetails.aspx?id={3}' />Eventdetails anzeigen</a></div></div>";
+                string htmltxt = string.Format(seltxt, ev.Name, ev.Details, date, routingParam);
                 HtmlGenericControl htmlelem = new HtmlGenericControl("div");
                 htmlelem.InnerHtml = htmltxt;
 				//Element wird hinzugefügt

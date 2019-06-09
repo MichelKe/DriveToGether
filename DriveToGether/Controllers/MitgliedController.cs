@@ -23,6 +23,11 @@ namespace DriveToGether.Controllers
             return Mitglied.getMitglied(Mitglied);
         }
 
+        public static List<Mitglied> getMitgliedViaEmail(string email)
+        {
+            return Mitglied.getMitgliedViaEmail(email);
+        }
+
         //Mitglied hinzufügen
         public static List<Mitglied> addMitglied(Mitglied newMitglied)
         {

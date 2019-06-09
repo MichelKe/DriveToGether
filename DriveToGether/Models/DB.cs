@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -18,13 +19,6 @@ namespace DriveToGether.Models
         {
             m_dbstringbuilder["Database"] = "DriveToGether";
             m_dbconn = new SqlConnection(m_dbstringbuilder.ConnectionString);
-            m_dbconn.Open();
-
-        }
-
-        ~DB()
-        {
-            m_dbconn.Close();
         }
 
         //Execute SQL Funktionen
@@ -32,111 +26,140 @@ namespace DriveToGether.Models
         //Event SQL execution
         public static List<Event> executeEventSql(string sqlstring)
         {
-            SqlCommand cmd = new SqlCommand(sqlstring);
-            cmd.Connection = m_dbconn;
-
-            string sqlSubstring = sqlstring.Substring(0, 5);
-            List<Event> eventReturnList = new List<Event>();
-
-            if (sqlSubstring == "SELECT")
+            using (SqlConnection dbConn = new SqlConnection(m_dbstringbuilder.ConnectionString))
             {
-                SqlDataReader reader = cmd.ExecuteReader();
-                foreach (string line in reader)
-                {
-                    Event eventLine = new Event(reader["Name"].ToString(), Convert.ToDateTime(reader["Date"]), reader["Beschreibung"].ToString(), reader["Ortsname"].ToString(), reader["PLZ"].ToString());
-                    eventReturnList.Add(eventLine);
-                }
+                dbConn.Open();
 
-            } else if(sqlstring == "INSERT" || sqlstring == "UPDATE" || sqlstring == "DELETE"){
-                cmd.ExecuteNonQuery();
+                SqlCommand eventCmd = new SqlCommand(sqlstring);
+                //m_dbconn.Open();
+                eventCmd.Connection = dbConn;
+
+                string sqlSubstringEvent = sqlstring.Substring(0, 6);
+                List<Event> eventReturnList = new List<Event>();
+
+                if (sqlSubstringEvent == "SELECT")
+                {
+                    using (SqlDataReader reader = eventCmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Event eventLine = new Event(reader["Name"].ToString(), Convert.ToDateTime(reader["Date"]), reader["Beschreibung"].ToString(), reader["Ortsname"].ToString(), reader["PLZ"].ToString());
+                            eventReturnList.Add(eventLine);
+                        }
+                    }
+                }
+                dbConn.Close();
+                return eventReturnList;
             }
-            return eventReturnList;
+           
         }
 
         //Car SQL execution
         public static List<Car> executeCarSql(string sqlstring)
         {
-            SqlCommand cmd = new SqlCommand(sqlstring);
-            cmd.Connection = m_dbconn;
-
-            string sqlSubstring = sqlstring.Substring(0, 5);
-            List<Car> carReturnList = new List<Car>();
-
-            if (sqlSubstring == "SELECT")
+            using (SqlConnection dbConn = new SqlConnection(m_dbstringbuilder.ConnectionString))
             {
-                SqlDataReader reader = cmd.ExecuteReader();
-                foreach (string line in reader)
+                dbConn.Open();
+
+                SqlCommand carCmd = new SqlCommand(sqlstring);
+
+                carCmd.Connection = dbConn;
+
+                string sqlSubstringCar = sqlstring.Substring(0, 6);
+                List<Car> carReturnList = new List<Car>();
+
+                if (sqlSubstringCar == "SELECT")
                 {
-                    int plaetze = Convert.ToInt32(reader["Plaetze"]);
-                    Car carLine = new Car(reader["Autonummer"].ToString(), reader["Name"].ToString(), plaetze, reader["Beschreibung"].ToString(), reader["VornameFahrer"].ToString(), reader["NachnameFahrer"].ToString(), reader["EventName"].ToString(), Convert.ToDateTime(reader["EventDatum"]));
-                    carReturnList.Add(carLine);
+                    using (SqlDataReader reader = carCmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int plaetze = Convert.ToInt32(reader["Plaetze"]);
+                            Car carLine = new Car(reader["Autonummer"].ToString(), reader["Name"].ToString(), plaetze, reader["Beschreibung"].ToString(), reader["VornameFahrer"].ToString(), reader["NachnameFahrer"].ToString(), reader["EventName"].ToString(), Convert.ToDateTime(reader["EventDate"]));
+                            carReturnList.Add(carLine);
+                        }
+                    }
                 }
-
+                else if (sqlSubstringCar == "INSERT" || sqlSubstringCar == "UPDATE" || sqlSubstringCar == "DELETE")
+                {
+                    carCmd.ExecuteNonQuery();
+                }
+                dbConn.Close();
+                return carReturnList;
             }
-            else if (sqlstring == "INSERT" || sqlstring == "UPDATE" || sqlstring == "DELETE")
-            {
-                cmd.ExecuteNonQuery();
-            }
-            return carReturnList;
         }
 
         //CarMitglied SQL execution
         public static List<CarMitglied> executeCarMitgliedSql(string sqlstring)
         {
-            SqlCommand cmd = new SqlCommand(sqlstring);
-            cmd.Connection = m_dbconn;
-
-            string sqlSubstring = sqlstring.Substring(0, 5);
-            List<CarMitglied> carMitgliedReturnList = new List<CarMitglied>();
-
-            if (sqlSubstring == "SELECT")
+            using (SqlConnection dbConn = new SqlConnection(m_dbstringbuilder.ConnectionString))
             {
-                SqlDataReader reader = cmd.ExecuteReader();
-                foreach (string line in reader)
+                dbConn.Open();
+                SqlCommand carMitgliedCmd = new SqlCommand(sqlstring);
+                carMitgliedCmd.Connection = dbConn;
+
+                string sqlSubstringCarMitglied = sqlstring.Substring(0, 6);
+                List<CarMitglied> carMitgliedReturnList = new List<CarMitglied>();
+
+                if (sqlSubstringCarMitglied == "SELECT")
                 {
-                    CarMitglied carMitgliedLine = new CarMitglied(reader["Vorname"].ToString(), reader["Nachname"].ToString(), Convert.ToDateTime(reader["Geburtstag"]), reader["Autonummer"].ToString(), reader["EventName"].ToString(), Convert.ToDateTime(reader["EventDate"]));
-                    carMitgliedReturnList.Add(carMitgliedLine);
-                }
+                    using (SqlDataReader reader = carMitgliedCmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            CarMitglied carMitgliedLine = new CarMitglied(reader["Vorname"].ToString(), reader["Nachname"].ToString(), Convert.ToDateTime(reader["Geburtstag"]), reader["Autonummer"].ToString(), reader["EventName"].ToString(), Convert.ToDateTime(reader["EventDate"]));
+                            carMitgliedReturnList.Add(carMitgliedLine);
+                        }
+                    }
 
+                }
+                else if (sqlSubstringCarMitglied == "INSERT" || sqlSubstringCarMitglied == "UPDATE" || sqlSubstringCarMitglied == "DELETE")
+                {
+                    carMitgliedCmd.ExecuteNonQuery();
+                }
+                dbConn.Close();
+                return carMitgliedReturnList;
             }
-            else if (sqlstring == "INSERT" || sqlstring == "UPDATE" || sqlstring == "DELETE")
-            {
-                cmd.ExecuteNonQuery();
-            }
-            return carMitgliedReturnList;
         }
 
         //Mitglied SQL execution
         public static List<Mitglied> executeMitgliedSql(string sqlstring)
         {
-            SqlCommand cmd = new SqlCommand(sqlstring);
-            cmd.Connection = m_dbconn;
-
-            string sqlSubstring = sqlstring.Substring(0, 5);
-            List<Mitglied> mitgliedReturnList = new List<Mitglied>();
-
-            if (sqlSubstring == "SELECT")
+            using (SqlConnection dbConn = new SqlConnection(m_dbstringbuilder.ConnectionString))
             {
-                SqlDataReader reader = cmd.ExecuteReader();
-                foreach (string line in reader)
+                SqlCommand mitgliedCmd = new SqlCommand(sqlstring);
+                mitgliedCmd.Connection = m_dbconn;
+
+                string sqlSubstringMitglied = sqlstring.Substring(0, 6);
+                List<Mitglied> mitgliedReturnList = new List<Mitglied>();
+
+                if (sqlSubstringMitglied == "SELECT")
                 {
-                    Mitglied carMitgliedLine = new Mitglied(reader["Vorname"].ToString(), reader["Nachname"].ToString(), reader["Geburtstag"].ToString(), reader["Email"].ToString(), reader["Anschrift"].ToString(), reader["Ortsname"].ToString(), reader["PLZ"].ToString(), reader["Rollenname"].ToString());
-                    mitgliedReturnList.Add(carMitgliedLine);
-                }
+                    using (SqlDataReader reader = mitgliedCmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Mitglied carMitgliedLine = new Mitglied(reader["Vorname"].ToString(), reader["Nachname"].ToString(), reader["Geburtstag"].ToString(), reader["Email"].ToString(), reader["Anschrift"].ToString(), reader["Ortsname"].ToString(), reader["PLZ"].ToString(), reader["Rollenname"].ToString());
+                            mitgliedReturnList.Add(carMitgliedLine);
+                        }
+                    }
 
+                }
+                else if (sqlSubstringMitglied == "INSERT" || sqlSubstringMitglied == "UPDATE" || sqlSubstringMitglied == "DELETE")
+                {
+                    mitgliedCmd.ExecuteNonQuery();
+                }
+                dbConn.Close();
+                return mitgliedReturnList;
             }
-            else if (sqlstring == "INSERT" || sqlstring == "UPDATE" || sqlstring == "DELETE")
-            {
-                cmd.ExecuteNonQuery();
-            }
-            return mitgliedReturnList;
+            
         }
 
 
         //Event funktionen
 
         //Gibt Eventliste zurück
-        public static List<Event> getEventList()
+        public List<Event> getEventList()
         {
             string sqlstring = "SELECT * FROM dbo.Event";
             return executeEventSql(sqlstring);
@@ -145,7 +168,9 @@ namespace DriveToGether.Models
         //Gibt ausgewähltes Event zurück
         public static List<Event> getEvent(string name, DateTime datum)
         {
-            string sqlstring = "SELECT * FROM dbo.Event WHERE Name = " + name + " AND Date = " + datum;
+            DateTimeFormatInfo fmt = (new CultureInfo("de-DE")).DateTimeFormat;
+            string date = datum.ToString("d", fmt);
+            string sqlstring = "SELECT * FROM dbo.Event WHERE Name = '" + name + "' AND Date = '" + date + "'";
             return executeEventSql(sqlstring);
         }
 
@@ -154,7 +179,9 @@ namespace DriveToGether.Models
         //Fahrzeugliste für ausgewähltes Event laden
         public static List<Car> getEventCarList(string eventName, DateTime eventDate)
         {
-            string sqlstring = "SELECT * FROM dbo.Auto WHERE EventName=" + eventName + " AND EventDate=" + eventDate;
+            DateTimeFormatInfo fmt = (new CultureInfo("de-DE")).DateTimeFormat;
+            string date = eventDate.ToString("d", fmt);
+            string sqlstring = "SELECT * FROM dbo.Auto WHERE EventName='" + eventName + "' AND EventDate='" + date + "'";
 
             return executeCarSql(sqlstring);
         }
@@ -162,14 +189,18 @@ namespace DriveToGether.Models
         //Select Car
         public static List<Car> selectCar(string eventName, DateTime eventDate, string autonummer)
         {
-            string sqlstring = "SELECT * FROM dbo.Auto WHERE Autonummer=" + autonummer + " AND EventName = " + eventName + " AND EventDate = " + eventDate;
+            DateTimeFormatInfo fmt = (new CultureInfo("de-DE")).DateTimeFormat;
+            string date = eventDate.ToString("d", fmt);
+            string sqlstring = "SELECT * FROM dbo.Auto WHERE Autonummer='" + autonummer + "' AND EventName = '" + eventName + "' AND EventDate = '" + date + "'";
             return executeCarSql(sqlstring);
         }
 
         //Insert Car
         public static List<Car> insertCar(Car newCar)
         {
-            string sqlstring = "INSERT INTO dbo.Auto (Autonummer, Name, Plaetze, Beschreibung, VornameFahrer, NachnameFahrer, EventName, EventDate) VALUES (" + newCar.Autonummer + ", " + newCar.Name + ", " + newCar.Plaetze + ", " + newCar.Details + ", " + newCar.Fahrer_Vorname + ", " + newCar.Fahrer_Nachname + ", " + newCar.Event_Name + ", " + newCar.Event_Datum +")";
+            DateTimeFormatInfo fmt = (new CultureInfo("de-DE")).DateTimeFormat;
+            string date = newCar.Event_Datum.ToString("d", fmt);
+            string sqlstring = "INSERT INTO dbo.Auto (Autonummer, Name, Plaetze, Beschreibung, VornameFahrer, NachnameFahrer, EventName, EventDate) VALUES ('" + newCar.Autonummer + "', '" + newCar.Name + "', " + newCar.Plaetze + ", '" + newCar.Details + "', '" + newCar.Fahrer_Vorname + "', '" + newCar.Fahrer_Nachname + "', '" + newCar.Event_Name + "', '" + date + "')";
             executeCarSql(sqlstring);
             return getEventCarList(newCar.Event_Name, newCar.Event_Datum);
         }
@@ -177,10 +208,9 @@ namespace DriveToGether.Models
         //Update Car
         public static List<Car> updateCar(Car newCar)
         {
-
-            //\\ !! AUTONUMMER KANN NICHT GE-UPDATED WERDEN DA AUTONUMMER PRIMARYKEY IST !! //\\
-
-            string sqlstring = "UPDATE dbo.Auto SET Name = " + newCar.Name + ", Plaetze = " + newCar.Plaetze + ", Beschreibung = " + newCar.Details + ", VornameFahrer = " + newCar.Fahrer_Vorname + ", NachnameFahrer = " + newCar.Fahrer_Nachname + " WHERE Autonummer = " + newCar.Autonummer + " AND EventName = " + newCar.Event_Name + " AND EventDate = " + newCar.Event_Datum;
+            DateTimeFormatInfo fmt = (new CultureInfo("de-DE")).DateTimeFormat;
+            string date = newCar.Event_Datum.ToString("d", fmt);
+            string sqlstring = "UPDATE dbo.Auto SET Name = '" + newCar.Name + "', Plaetze = " + newCar.Plaetze + ", Beschreibung = '" + newCar.Details + "', VornameFahrer = '" + newCar.Fahrer_Vorname + "', NachnameFahrer = '" + newCar.Fahrer_Nachname + "' WHERE Autonummer = '" + newCar.Autonummer + "' AND EventName = '" + newCar.Event_Name + "' AND EventDate = '" + date + "'";
             executeCarSql(sqlstring);
             return getEventCarList(newCar.Event_Name, newCar.Event_Datum);
         }
@@ -188,9 +218,10 @@ namespace DriveToGether.Models
         //Delete Car
         public static List<Car> deleteCar(string eventName, DateTime eventDate, string autonummer)
         {
-
-            string sqlstring1 = "DELETE FROM dbo.Auto WHERE Autonummer = " + autonummer + " AND EventName = " + eventName + " AND EventDate = " + eventDate;
-            string sqlstring2 = "DELETE FROM dbo.AutoMitglied WHERE Autonummer = " + autonummer + " AND EventName = " + eventName + " AND EventDate = " + eventDate;
+            DateTimeFormatInfo fmt = (new CultureInfo("de-DE")).DateTimeFormat;
+            string date = eventDate.ToString("d", fmt);
+            string sqlstring1 = "DELETE FROM dbo.Auto WHERE Autonummer = '" + autonummer + "' AND EventName = '" + eventName + "' AND EventDate = '" + date + "'";
+            string sqlstring2 = "DELETE FROM dbo.AutoMitglied WHERE Autonummer = '" + autonummer + "' AND EventName = '" + eventName + "' AND EventDate = '" + date + "'";
             
             executeCarSql(sqlstring1);
             executeCarSql(sqlstring2);
@@ -204,15 +235,18 @@ namespace DriveToGether.Models
         //Mitfahrer für ein Fahrzeug laden
         public static List<CarMitglied> getPassangersForCar(string eventName, DateTime eventDate, string autonummer)
         {
-            string sqlstring = "SELECT * FROM dbo.AutoMitglied WHERE Autonummer = " + autonummer + " AND EventName = " + eventName + " AND EventDate = " + eventDate;
-
+            DateTimeFormatInfo fmt = (new CultureInfo("de-DE")).DateTimeFormat;
+            string date = eventDate.ToString("d", fmt);
+            string sqlstring = "SELECT * FROM dbo.AutoMitglied WHERE Autonummer = '" + autonummer + "' AND EventName = '" + eventName + "' AND EventDate = '" + date + "'";
             return executeCarMitgliedSql(sqlstring);
         }
 
         //Mitglied als Mitfahrer eintragen
         public static List<CarMitglied> addPassengerToCar(CarMitglied newPass)
         {
-            string sqlstring = "INSERT INTO dbo.AutoMitglied (Vorname, Nachname, Geburtstag, Autonummer, EventName, EventDate) VALUES (" + newPass.Vorname + ", " + newPass.Nachname + ", " + newPass.Geburtsdatum + ", " + newPass.Autonummer + ", " + newPass.Eventname + ", " + newPass.Eventdatum + ")";
+            DateTimeFormatInfo fmt = (new CultureInfo("de-DE")).DateTimeFormat;
+            string date = newPass.Eventdatum.ToString("d", fmt);
+            string sqlstring = "INSERT INTO dbo.AutoMitglied (Vorname, Nachname, Geburtstag, Autonummer, EventName, EventDate) VALUES ('" + newPass.Vorname + "', '" + newPass.Nachname + "', '" + newPass.Geburtsdatum + "', '" + newPass.Autonummer + "', '" + newPass.Eventname + "', '" + date + "')";
             executeCarMitgliedSql(sqlstring);
             return getPassangersForCar(newPass.Eventname, newPass.Eventdatum, newPass.Autonummer);
         }
@@ -220,7 +254,9 @@ namespace DriveToGether.Models
         //Mitglied von Mitfahrerlist entfernen
         public static List<CarMitglied> removePassangerFromCar(CarMitglied removePass)
         {
-            string sqlstring = "DELETE FROM dbo.AutoMitglied WHERE Autonummer = " + removePass.Autonummer + " AND EventName = " + removePass.Eventname + " AND EventDate = " + removePass.Eventdatum;
+            DateTimeFormatInfo fmt = (new CultureInfo("de-DE")).DateTimeFormat;
+            string date = removePass.Eventdatum.ToString("d", fmt);
+            string sqlstring = "DELETE FROM dbo.AutoMitglied WHERE Autonummer = '" + removePass.Autonummer + "' AND EventName = '" + removePass.Eventname + "' AND EventDate = '" + date + "'";
             executeCarMitgliedSql(sqlstring);
             return getPassangersForCar(removePass.Eventname, removePass.Eventdatum, removePass.Autonummer);
         }
@@ -231,14 +267,20 @@ namespace DriveToGether.Models
         //Mitglied zurückgeben
         public static List<Mitglied> getUser(Mitglied Mitglied)
         {
-            string sqlstring = "SELECT * FROM dbo.Mitglied WHERE Vorname = " + Mitglied.Vorname + " AND Nachname = " + Mitglied.Nachname + " AND Geburtstag = " + Mitglied.Geburtstag;
+            string sqlstring = "SELECT * FROM dbo.Mitglied WHERE Vorname = '" + Mitglied.Vorname + "' AND Nachname = '" + Mitglied.Nachname + "' AND Geburtstag = '" + Mitglied.Geburtstag + "'";
+            return executeMitgliedSql(sqlstring);
+        }
+
+        public static List<Mitglied> getUserViaEmail(string email)
+        {
+            string sqlstring = "SELECT * FROM dbo.Mitglied WHERE Email = '" + email + "'";
             return executeMitgliedSql(sqlstring);
         }
 
         //Mitglied hinzufügen
         public static List<Mitglied> addUser(Mitglied newMitglied)
-        { //string vorname, string nachname, string geburtstag, string mail, string anschrift, string ortsname, string plz, bool isadmin
-            string sqlstring = "INSERT INTO dbo.Mitglied (Vorname, Nachname, Geburtstag, Email, Anschrift, Ortsname, PLZ, Rollenname) VALUES (" + newMitglied.Vorname + ", " + newMitglied.Nachname + ", " + newMitglied.Geburtstag + ", " + newMitglied.Mail + ", " + newMitglied.Anschrift + ", " + newMitglied.Ortsname + ", " + newMitglied.PLZ + ", " + newMitglied.Rollenname + ")";
+        { 
+            string sqlstring = "INSERT INTO dbo.Mitglied (Vorname, Nachname, Geburtstag, Email, Anschrift, Ortsname, PLZ, Rollenname) VALUES ('" + newMitglied.Vorname + "', '" + newMitglied.Nachname + "', '" + newMitglied.Geburtstag + "', '" + newMitglied.Mail + "', '" + newMitglied.Anschrift + "', '" + newMitglied.Ortsname + "', '" + newMitglied.PLZ + "', '" + newMitglied.Rollenname + "')";
             executeMitgliedSql(sqlstring);
             return getUser(newMitglied);
         }
@@ -247,7 +289,7 @@ namespace DriveToGether.Models
         public static List<Mitglied> updateUser(Mitglied newMitglied)
         {
             //\\ Vorname, Nachname, Geburtstag können nicht angepasst werden weil Primärschlüssel //\\
-            string sqlstring = "UPDATE dbo.Mitglied SET Anschrift = " + newMitglied.Anschrift + ", Ortsname = " + newMitglied.Ortsname + ", PLZ = " + newMitglied.PLZ + " WHERE Vorname = " + newMitglied.Vorname + " AND Nachname = " + newMitglied.Nachname + " AND Geburtstag = " + newMitglied.Geburtstag;
+            string sqlstring = "UPDATE dbo.Mitglied SET Anschrift = '" + newMitglied.Anschrift + "', Ortsname = '" + newMitglied.Ortsname + "', PLZ = '" + newMitglied.PLZ + "' WHERE Vorname = '" + newMitglied.Vorname + "' AND Nachname = '" + newMitglied.Nachname + "' AND Geburtstag = '" + newMitglied.Geburtstag + "'";
             executeMitgliedSql(sqlstring);
             return getUser(newMitglied);
         }

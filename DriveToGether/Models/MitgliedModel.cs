@@ -41,6 +41,11 @@ namespace DriveToGether.Models
             return DB.getUser(Mitglied);
         }
 
+        public static List<Mitglied> getMitgliedViaEmail(string email)
+        {
+            return DB.getUserViaEmail(email);
+        }
+
         //Mitglied hinzufügen
         public static List<Mitglied> addMitglied(Mitglied newMitglied)
         {

@@ -71,11 +71,6 @@ namespace DriveToGether.Controllers
             return CarMitglied.removePassanger(removePass);
         }
 
-
-
-
-
-
         //Autoliste mit Passagieren wird zurückgegeben 
         public static List<HtmlGenericControl> getHtmlCarList(string eventName, string eventDate)
         {
@@ -92,44 +87,34 @@ namespace DriveToGether.Controllers
             foreach (Car auto in AutoListe)
             {
 
-                List<CarMitglied> passangers = DB.getPassangersForCar(eventName, event_date, auto.Autonummer);
+                List<CarMitglied> passangers = CarMitglied.getPassangers(eventName, event_date, auto.Autonummer);
                 DateTimeFormatInfo fmt = (new CultureInfo("de-DE")).DateTimeFormat;
                 string date = event_date.ToString("d", fmt);
                 string routingParam = eventName + "_" + date;
+                string mitfahrerString = "";
+                string carNr = auto.Autonummer;
 
+				//Jeder Passagier wird durchlaufen
+                foreach (CarMitglied passagier in passangers)
+               {
 
-				////Jeder Passagier wird durchlaufen
-    //            foreach (CarMitglied passagier in passangers)
-    //            {
-                    
-    //                mitfahrerString += passagier.ToString() + " ";
-    //            }
-
+                    mitfahrerString += passagier.ToString() + " ";
+               }
 
 				//HTML Element wird erstellt
-                string htmltxt = "<a runat='server' class='btn btn-default' onServerClick='AddToCar_Click' href='/Views/Event/EventDetails.aspx?id="+routingParam+"'>Einschreiben</a>";
-                string htmltxt1 = "<br>";
-                HtmlGenericControl htmlelem = new HtmlGenericControl("li");
-                htmlelem.InnerHtml = string.Format("{0}, {1}, {2}; Freie Plätze: {3} {4} {5} {6}", auto.Name, auto.Fahrer_Vorname, auto.Fahrer_Nachname, (auto.Plaetze - passangers.Count) , htmltxt, htmltxt1, passangers);
 
-				//Element wird hinzugefügt
-                AutoHTML.Add(htmlelem);
+                    string htmltxt = "<asp:LinkButton ID='addToCarBtn' runat='server'  class='btn btn-default' OnCommand='AddToCar_Click' CommandArgument='"+routingParam+";"+carNr+ "'>Einschreiben</a>";
+                    //string htmltxt = "<a runat='server' class='btn btn-default' onServerClick='EventDetails.AddToCar_Click' href='/Views/Event/EventDetails.aspx?id="+routingParam+"&car="+carNr+"'>Einschreiben</a>";
+                    string htmltxt1 = "<br>";
+                    HtmlGenericControl htmlelem = new HtmlGenericControl("li");
+                    htmlelem.InnerHtml = string.Format("{0}, {1}, {2}; Freie Plätze: {3} {4} {5} {6}", auto.Name, auto.Fahrer_Vorname, auto.Fahrer_Nachname, (auto.Plaetze - passangers.Count) , htmltxt, htmltxt1, mitfahrerString);
+
+				    //Element wird hinzugefügt
+                    AutoHTML.Add(htmlelem);
+                
             }
 			//View wird hinzugefpgt
             return AutoHTML;
         }
-
-		
-  //      public static List<int> GetUsersForCar(string autonummer)
-  //      {
-  //          List<int> MitfahrerListe = Dist.GetUsersForCar(autonummer);
-  //          return MitfahrerListe; 
-  //      }
-
-		////Fügt User einem Auto hinzu
-  //      public static void AddUserToCar(string autonummer, int user_id)
-  //      {
-  //          Dist.AddUserToCar(autonummer, user_id);
-	 //   }
     }
 }
