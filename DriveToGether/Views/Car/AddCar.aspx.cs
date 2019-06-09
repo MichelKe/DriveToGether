@@ -15,22 +15,28 @@ namespace DriveToGether.Account
 		//Funktion beim Klicken de hinzufügen Buttons
         protected void AddCar_Click(object sender, EventArgs e)
         {
-			//ID wird konvertiert
-            int id = Convert.ToInt16(Request.QueryString["id"]);
-			//Auto wird in Liste in CarController hinzugefügt
-            CarController.AddCar(Fahrzeugname.Text, FahrerVorname.Text, FahrerNachname.Text, CarDetails.Text, Autonummer.Text, Convert.ToInt16(Plaetze.Text), id);
-			//var user = new Car() { Name = Fahrzeugname.Text, FahrerName = FahrerName.Text, CarDetails = CarDetails.Text, Nachname = Nachname.Text };
+            //Routerparam wird zu zwei seperaten Strings konvertiert
+            string identifier = (Request.QueryString["routeparam"]).ToString();
+            string[] identifiers = identifier.Split('_');
+            string eventName = identifiers.First();
+            string eventDate = identifiers.Last();
+
+            //Eventdatum String zu DateTime konvertieren
+            DateTime event_date = Convert.ToDateTime(eventDate);
+
+            //Auto wird in Liste in CarController hinzugefügt
+            CarController.addCar( Autonummer.Text, Fahrzeugname.Text, Convert.ToInt16(Plaetze.Text), CarDetails.Text, FahrerVorname.Text, FahrerNachname.Text, eventName, event_date);
 
 			//Seite des entsprechenden Events wird aufgerufen
-			Response.Redirect("/Views/Event/EventDetails.aspx?id="+id);
+			Response.Redirect("/Views/Event/EventDetails.aspx?id="+ identifier);
         }
 		//Beim Abbrechen wird diese Funktion aufgerufen
         protected void RedirectBack_Click(object sender, EventArgs e)
-        {	
-			//ID wird konvertiert
-            int id = Convert.ToInt16(Request.QueryString["id"]);
-			//Seite des entsprechenden Events wird aufgerufen
-			Response.Redirect("/Views/Event/EventDetails.aspx?id=" + id);
+        {
+            //ID wird konvertiert
+            string identifier = (Request.QueryString["routeparam"]).ToString();
+            //Seite des entsprechenden Events wird aufgerufen
+            Response.Redirect("/Views/Event/EventDetails.aspx?id=" + identifier);
         }
     }
 }

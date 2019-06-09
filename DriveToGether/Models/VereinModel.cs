@@ -9,13 +9,17 @@ namespace DriveToGether.Models
     {
         public string Name;
         public DateTime Gruendungsjahr;
-        // ORT HINZUFÜGEN ??
+        public string Anschrift;
+        public string Ortsname;
+        public string PLZ;
 
-        public Verein(string name, DateTime gruendungsjahr)
+        public Verein(string name, DateTime gruendungsjahr, string anschrift, string ortsname, string plz)
         {
             Name = name;
             Gruendungsjahr = gruendungsjahr;
-            // ORT ??
+            Anschrift = anschrift;
+            Ortsname = ortsname;
+            PLZ = plz;
         }
 
         // SQL/FUNKTION MAYBE ?

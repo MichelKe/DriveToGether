@@ -35,6 +35,10 @@ namespace DriveToGether.Account
                 // Wenn Sie aktivieren möchten, dass Kennwortfehler eine Sperre auslösen, ändern Sie in "shouldLockout: true".
                 var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
 
+                string username = User.Identity.GetUserName();
+
+                Console.WriteLine(username);
+
                 switch (result)
                 {
                     case SignInStatus.Success:

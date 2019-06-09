@@ -256,6 +256,8 @@
     <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\MitgliedController.cs" />
+    <Compile Include="Models\MitgliedModel.cs" />
     <Compile Include="Models\OrtModel.cs" />
     <Compile Include="Models\RolleModel.cs" />
     <Compile Include="Models\CarMitgliedModel.cs" />
@@ -468,6 +470,8 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

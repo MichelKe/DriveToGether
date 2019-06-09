@@ -7,10 +7,9 @@ namespace DriveToGether.Models
 {
     public class VereinEvent
     {
-        // v ?? v
         public string EventName;
         public string Verein;
-        // ^ ?? ^
+
 
         public VereinEvent(string eventname, string verein)
         {

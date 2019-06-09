@@ -1,6 +1,7 @@
 ﻿using DriveToGether.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,39 +17,100 @@ namespace DriveToGether.Controllers
             return View();
         }
 
-		//Fügt Auto hinzu
-        public static void AddCar(string Name, string Fahrer_Vorname, string Fahrer_Nachname, string Details, string Autonummer, int Plaetze, int EventID)
+       
+        //Farzeugliste laden
+        public static List<Car> getCarList(string eventName, string eventDate)
+        {
+            DateTime event_date = Convert.ToDateTime(eventDate);
+            return Car.getCarList(eventName, event_date);
+        }
+        
+		//Auto hinzufügen
+        public static void addCar(string autonummer, string name, int plaetze, string details, string vorname_fahrer, string nachname_fahrer, string event_name, DateTime event_datum)
         {
 			//Neuer DB Eintrag wird erstellt
-            Car Auto = new Car(Name, Fahrer_Vorname, Fahrer_Nachname, Details, Autonummer, Plaetze, EventID);
-			//Funktion um Auto in Tabelle hinzuzufügen wird erstellt
-            Auto.AddCar();
+            Car newCar = new Car(autonummer, name, plaetze, details, vorname_fahrer, nachname_fahrer, event_name, event_datum);
+            //Funktion um Auto in Tabelle hinzuzufügen wird erstellt
+            Car.addCar(newCar);
         }
 
-		//AutoListe wird zurpckgegeben 
-        public static List<HtmlGenericControl> GetCarList(int id)
+        //Auto auswählen
+        public static List<Car> selectCar(string eventName, DateTime eventDate, string autonummer)
         {
-			//Variable wird beschrieben
-            List<Car> AutoListe = Car.GetCarList(id);
+            return Car.selectCar(eventName, eventDate, autonummer);
+        }
+
+        //Auto anpassen
+        public static List<Car> modifyCar(string autonummer, string name, int plaetze, string details, string vorname_fahrer, string nachname_fahrer, string event_name, DateTime event_datum)
+        {
+            Car newCar = new Car(autonummer, name, plaetze, details, vorname_fahrer, nachname_fahrer, event_name, event_datum);
+            return Car.modifyCar(newCar);
+        }
+
+        //Auto löschen
+        public static List<Car> deleteCar(string eventName, DateTime eventDate, string autonummer)
+        {
+            return DB.deleteCar(eventName, eventDate, autonummer);
+        }
+
+        //Passagiere laden
+        public static List<CarMitglied> getPassangersForCar(string eventName, DateTime eventDate, string autonummer)
+        {
+            return CarMitglied.getPassangers(eventName, eventDate, autonummer);
+        }
+
+        //Passagier hizufügen
+        public static List<CarMitglied> addPassangerToCar(CarMitglied newPass)
+        {
+            return CarMitglied.addPassanger(newPass);
+        }
+
+        //Passagier entfernen
+        public static List<CarMitglied> removePassangerFromCar(CarMitglied removePass)
+        {
+            return CarMitglied.removePassanger(removePass);
+        }
+
+
+
+
+
+
+        //Autoliste mit Passagieren wird zurückgegeben 
+        public static List<HtmlGenericControl> getHtmlCarList(string eventName, string eventDate)
+        {
+            //Eventdatum String zu DateTime konvertieren
+            DateTime event_date = Convert.ToDateTime(eventDate);
+
+            //Gibt Mitfahrerliste zurück
+            List<Car> AutoListe = Car.getCarList(eventName, event_date);
+
 			//Neue Listinstanz wird erstellt
             List<HtmlGenericControl> AutoHTML = new List<HtmlGenericControl>();
 
 			//Jedes Auto in der Liste wird durchlaufen
             foreach (Car auto in AutoListe)
             {
-                List<int> mitfahrer = GetUsersForCar(auto.Autonummer);
-                string mitfahrerString = "";
-				//Jeder Passagier wird durchlaufen
-                foreach (int passagier in mitfahrer)
-                {
-                    mitfahrerString += passagier.ToString() + " ";
-                }
+
+                List<CarMitglied> passangers = DB.getPassangersForCar(eventName, event_date, auto.Autonummer);
+                DateTimeFormatInfo fmt = (new CultureInfo("de-DE")).DateTimeFormat;
+                string date = event_date.ToString("d", fmt);
+                string routingParam = eventName + "_" + date;
+
+
+				////Jeder Passagier wird durchlaufen
+    //            foreach (CarMitglied passagier in passangers)
+    //            {
+                    
+    //                mitfahrerString += passagier.ToString() + " ";
+    //            }
+
 
 				//HTML Element wird erstellt
-                string htmltxt = "<a runat='server' class='btn btn-default' onServerClick='AddToCar_Click' href='/Views/Event/EventDetails.aspx?id="+id+"'>Einschreiben</a>";
+                string htmltxt = "<a runat='server' class='btn btn-default' onServerClick='AddToCar_Click' href='/Views/Event/EventDetails.aspx?id="+routingParam+"'>Einschreiben</a>";
                 string htmltxt1 = "<br>";
                 HtmlGenericControl htmlelem = new HtmlGenericControl("li");
-                htmlelem.InnerHtml = string.Format("{0}, {1}, {2}; {3} {4} {5} {6}", auto.Name, auto.Fahrer_Vorname, auto.Fahrer_Nachname, (auto.Plaetze - mitfahrer.Count) , htmltxt, htmltxt1, mitfahrerString);
+                htmlelem.InnerHtml = string.Format("{0}, {1}, {2}; Freie Plätze: {3} {4} {5} {6}", auto.Name, auto.Fahrer_Vorname, auto.Fahrer_Nachname, (auto.Plaetze - passangers.Count) , htmltxt, htmltxt1, passangers);
 
 				//Element wird hinzugefügt
                 AutoHTML.Add(htmlelem);
@@ -57,17 +119,17 @@ namespace DriveToGether.Controllers
             return AutoHTML;
         }
 
-		//Gibt Mitfahrer zurück
-        public static List<int> GetUsersForCar(string autonummer)
-        {
-            List<int> MitfahrerListe = Dist.GetUsersForCar(autonummer);
-            return MitfahrerListe; 
-        }
+		
+  //      public static List<int> GetUsersForCar(string autonummer)
+  //      {
+  //          List<int> MitfahrerListe = Dist.GetUsersForCar(autonummer);
+  //          return MitfahrerListe; 
+  //      }
 
-		//Fügt User einem Auto hinzu
-        public static void AddUserToCar(string autonummer, int user_id)
-        {
-            Dist.AddUserToCar(autonummer, user_id);
-	    }
+		////Fügt User einem Auto hinzu
+  //      public static void AddUserToCar(string autonummer, int user_id)
+  //      {
+  //          Dist.AddUserToCar(autonummer, user_id);
+	 //   }
     }
 }

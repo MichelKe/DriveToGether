@@ -13,14 +13,9 @@ namespace DriveToGether.Models
     // Sie können Benutzerdaten für den Benutzer hinzufügen, indem Sie der User-Klasse weitere Eigenschaften hinzufügen. Weitere Informationen finden Sie unter https://go.microsoft.com/fwlink/?LinkID=317594.
     public class ApplicationUser : IdentityUser
     {
+        public override string UserName { get; set; }
         public string Vorname { get; set; }
         public string Nachname { get; set; }
-        public string Geburtstag { get; set; }
-        public string Mail { get; set; }
-        public string Anschrift { get; set; }
-        public string Ort { get; set; }
-        public bool IsAdmin { get; set; }
-
 
         public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)
         {

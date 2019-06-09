@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using DriveToGether.Models;
+using DriveToGether.Controllers;
 
 namespace DriveToGether.Account
 {
@@ -16,8 +17,11 @@ namespace DriveToGether.Account
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text, Vorname =  Vorname.Text, Nachname = Nachname.Text};
-			//Neuer User wird in der DB erstellt
+            var user = new ApplicationUser() { Email = Email.Text, Vorname = Vorname.Text, Nachname = Nachname.Text, UserName = Email.Text};
+            //var result = await UserManager.CreateAsync(user, Password.Text);
+            //Neuer User wird in der DB erstellt
+            //Mitglied newMitglied = new Mitglied(Vorname.Text, Nachname.Text, Geburtstag.Text, Email.Text, Anschrift.Text, Ortsname.Text, PLZ.Text, "User");
+            //MitgliedController.addMitglied(newMitglied);
 			IdentityResult result = manager.Create(user, Password.Text);
             if (result.Succeeded)
             {

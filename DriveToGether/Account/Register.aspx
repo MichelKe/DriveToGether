@@ -27,11 +27,43 @@
             </div>
         </div>
         <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="Geburtstag" CssClass="col-md-2 control-label">Geburtstag</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="Geburtstag" CssClass="form-control"/>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Geburtstag"
+                    CssClass="text-danger" ErrorMessage="Das Geburtstag-Feld ist erforderlich." />
+            </div>
+        </div>
+        <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">E-Mail</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
                     CssClass="text-danger" ErrorMessage="Das E-Mail-Feld ist erforderlich." />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="Anschrift" CssClass="col-md-2 control-label">Anschrift</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="Anschrift" CssClass="form-control" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Anschrift"
+                    CssClass="text-danger" ErrorMessage="Das Anschrift-Feld ist erforderlich." />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="Ortsname" CssClass="col-md-2 control-label">Ortsname</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="Ortsname" CssClass="form-control" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Ortsname"
+                    CssClass="text-danger" ErrorMessage="Das Ortsname-Feld ist erforderlich." />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="PLZ" CssClass="col-md-2 control-label">PLZ</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="PLZ" CssClass="form-control" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="PLZ"
+                    CssClass="text-danger" ErrorMessage="Das PLZ-Feld ist erforderlich." />
             </div>
         </div>
         <div class="form-group">

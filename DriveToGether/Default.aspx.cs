@@ -19,6 +19,7 @@ namespace DriveToGether
                 eventlist.Controls.Add(hgc);
             }
         }
+
         protected void EventDetails_Click(int id)
         {
             Response.Redirect("/Views/Event/EventDetails.aspx");

@@ -8,51 +8,59 @@ namespace DriveToGether.Models
 {
     public class Car
     {
-		//Membervariaben Public ????
-
+		//Membervariaben
+        public string Autonummer;
         public string Name;
+        public int Plaetze;
+        public string Details;
         public string Fahrer_Vorname;
         public string Fahrer_Nachname;
-        public string Details;
-        public string Autonummer;
-        public int Plaetze;
-        public int Event_ID;
+        public string Event_Name;
+        public DateTime Event_Datum;
+        
 
-		//Attribute für Auto
-        public Car(string name, string vorname_fahrer, string nachname_fahrer, string details, string autonummer, int plaetze, int event_id)
+        //Auto Konstruktor
+        public Car(string autonummer, string name, int plaetze, string details, string vorname_fahrer, string nachname_fahrer, string event_name, DateTime event_datum)
         {
+            Autonummer = autonummer;
             Name = name;
+            Plaetze = plaetze;
+            Details = details;
             Fahrer_Vorname = vorname_fahrer;
             Fahrer_Nachname = nachname_fahrer;
-            Details = details;
-            Autonummer = autonummer;
-            Plaetze = plaetze;
-            Event_ID = event_id;
-        }
-       
-		//Funktion Auto hinzufügen
-        public void AddCar()
-        {
-            DB.CarTable.Add(this);
+            Event_Name = event_name;
+            Event_Datum = event_datum;
         }
 
-		//Funktion Auto auslesen
-        public static List<Car> GetCarList(int id)
+        
+        //Funktion Autoliste für Event
+        public static List<Car> getCarList(string eventName, DateTime eventDate)
         {
-            List<Car> cartable = DB.CarTable;
-            List<Car> carReturn = new List<Car>();
-			//Für jedes Auto in Liste
-            foreach(Car auto in cartable)
-            {
-				//Überprüfung ob Auto zur Liste gehört
-                if(auto.Event_ID == id)
-                {
-                    carReturn.Add(auto);
-                }
-            }
-            return carReturn;
+            return DB.getEventCarList(eventName, eventDate);
+        }
+
+        //Ausgewähltes Auto laden
+        public static List<Car> selectCar(string eventName, DateTime eventDate, string autonummer)
+        {
+            return DB.selectCar(eventName, eventDate, autonummer);
+        }
+
+        //Auto hinzufügen
+        public static List<Car> addCar(Car newCar)
+        {
+            return DB.insertCar(newCar);
+        }
+
+        //Auto bearbeiten
+        public static List<Car> modifyCar(Car newCar)
+        {
+            return DB.updateCar(newCar);
+        }
+
+        //Auto löschen
+        public static List<Car> deleteCar(string eventName, DateTime eventDate, string autonummer)
+        {
+            return DB.deleteCar(eventName, eventDate, autonummer);
         }
     }
-
-    //public class AddCarToList
 }

@@ -9,30 +9,32 @@ namespace DriveToGether.Models
 	//Klasse zur Verwaltung von Events
     public class Event
     {
-        public int ID;
+        //Event Attribute
         public string Name;
-        public string Details;
         public DateTime Datum;
+        public string Details;
+        public string Ortsname;
+        public string PLZ;
 
-		//Event Attribute
-        public Event(int id, string name, string details, DateTime datum)
+        public Event( string name, DateTime datum, string details, string ortsname, string plz)
         {
-            ID = id;
             Name = name;
-            Details = details;
             Datum = datum;
+            Details = details;
+            Ortsname = ortsname;
+            PLZ = plz;
         }
 
-		//Gibt Eventliste zurück
-        public static List<Event> GetEventList()
+        //Generiert Eventliste
+		public static List<Event> getEventList()
         {
-            return DB.EventTable;
+            return DB.getEventList();
         }
 
-		//Gibt Event per ID zurück
-        public static Event GetEvent(int id)
+        //Gibt bestimmtes Event aus
+        public static List<Event> getEvent(string Name, DateTime Datum)
         {
-            return DB.EventTable.ElementAt(id);
+            return DB.getEvent(Name, Datum);
         }
     } 
 }
